@@ -11,11 +11,11 @@ Name | Description
 SerializeObject(Object) | Serializes the specified object to a JSON string.
 ?SerializeObject(Object, Formatting) | Serializes the specified object to a JSON string using formatting.
 ~~SerializeObject(Object, JsonConverter[])~~ | ~~Serializes the specified object to a JSON string using a collection of JsonConverter.~~
-SerializeObject(Object, JsonSerializerSettings) | Serializes the specified object to a JSON string using JsonSerializerSettings.
+SerializeObject(Object, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings) | Serializes the specified object to a JSON string using JsonSerializerSettings.
 ~~SerializeObject(Object, Formatting, JsonConverter[])~~ | ~~Serializes the specified object to a JSON string using formatting and a collection of JsonConverter.~~
-?SerializeObject(Object, Formatting, JsonSerializerSettings) | Serializes the specified object to a JSON string using formatting and JsonSerializerSettings.
+?SerializeObject(Object, Formatting, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Serializes the specified object to a JSON string using formatting and JsonSerializerSettings.
 ?SerializeObject(Object, Type, JsonSerializerSettings) | Serializes the specified object to a JSON string using a type, formatting and JsonSerializerSettings.
-?SerializeObject(Object, Type, Formatting, JsonSerializerSettings) | Serializes the specified object to a JSON string using a type, formatting and JsonSerializerSettings.
+?SerializeObject(Object, Type, Formatting, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Serializes the specified object to a JSON string using a type, formatting and JsonSerializerSettings.
 
 #### Example
 
@@ -50,11 +50,11 @@ Name | Description
 DeserializeObject(String) | Deserializes the JSON to a .NET object.
 DeserializeObject<T>(String) | Deserializes the JSON to the specified .NET type.
 ~~DeserializeObject<T>(String, JsonConverter[])~~ | ~~Deserializes the JSON to the specified .NET type using a collection of JsonConverter.~~
-DeserializeObject(String, JsonSerializerSettings) | Deserializes the JSON to a .NET object using JsonSerializerSettings.
-DeserializeObject<T>(String, JsonSerializerSettings) | Deserializes the JSON to the specified .NET type using JsonSerializerSettings.
+DeserializeObject(String, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Deserializes the JSON to a .NET object using JsonSerializerSettings.
+DeserializeObject<T>(String, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Deserializes the JSON to the specified .NET type using JsonSerializerSettings.
 DeserializeObject(String, Type) | Deserializes the JSON to the specified .NET type.
 ~~DeserializeObject(String, Type, JsonConverter[])~~ | ~~Deserializes the JSON to the specified .NET type using a collection of JsonConverter.~~
-DeserializeObject(String, Type, JsonSerializerSettings) | Deserializes the JSON to the specified .NET type using JsonSerializerSettings.
+DeserializeObject(String, Type, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Deserializes the JSON to the specified .NET type using JsonSerializerSettings.
 
 #### Example
 
