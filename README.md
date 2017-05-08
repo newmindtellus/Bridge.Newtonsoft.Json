@@ -2,6 +2,14 @@ Provides Bridge support for a limited subset of the [Newtonsoft.Json](https://gi
 
 **NOTE:** Only the features listed below are supported.
 
+## Installation
+
+Install using [NuGet](https://www.nuget.org/):
+
+```
+Install-Package Bridge.Newtonsoft.Json
+```
+
 ## JsonConvert.SerializeObject
 
 http://www.newtonsoft.com/json/help/html/Overload_Newtonsoft_Json_JsonConvert_SerializeObject.htm
