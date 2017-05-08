@@ -118,14 +118,14 @@ http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSetting
 
 Name | Description
 ---- | ----
-*ContractResolver | IContractResolver | Gets or sets the contract resolver used by the serializer when serializing .NET objects to JSON and vice versa.
+ContractResolver | IContractResolver | Gets or sets the contract resolver used by the serializer when serializing .NET objects to JSON and vice versa.
+NullValueHandling | NullValueHandling | Gets or sets how null values are handled during serialization and deserialization.
+TypeNameHandling | TypeNameHandling | Gets or sets how type name writing and reading is handled by the serializer.
 
 ### CamelCasePropertyNames > ContractResolver
 
 http://www.newtonsoft.com/json/help/html/ContractResolver.htm#CamelCasePropertyNamesContractResolver
 
-*NullValueHandling | NullValueHandling | Gets or sets how null values are handled during serialization and deserialization.
-*TypeNameHandling | TypeNameHandling | Gets or sets how type name writing and reading is handled by the serializer.
 ```csharp
 new JsonSerializerSettings 
 { 
