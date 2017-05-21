@@ -1,0 +1,10 @@
+﻿{
+  "output": "..\\Runner\\General", 
+  "cleanOutputFolderBeforeBuildPattern": "*.js|*.d.ts|*.css|*.woff|*.woff2|*.eot|*.svg|*.ttf", 
+  "outputFormatting": "Formatted",
+  "fileName": "code.js",
+  "outputBy": "Project",
+  "logging": {
+    "level": "None"
+  }
+}
