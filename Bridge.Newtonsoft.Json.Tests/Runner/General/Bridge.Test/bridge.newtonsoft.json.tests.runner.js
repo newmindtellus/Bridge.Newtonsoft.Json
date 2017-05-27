@@ -4990,7 +4990,7 @@ QUnit.log(function (details) {
     Bridge.Test.Runtime.ContextHelper.UpdateTestSource(source, ctx.Stack);
 });
 /**
- * @compiler Bridge.NET 16.0.0-beta
+ * @compiler Bridge.NET 16.0.0-beta2
  */
 Bridge.assembly("Bridge.Test.Bridge.Newtonsoft.Json.Tests", function ($asm, globals) {
     
@@ -5037,6 +5037,7 @@ Bridge.assembly("Bridge.Test.Bridge.Newtonsoft.Json.Tests", function ($asm, glob
             QUnit.test("IgnoreNullValueWorks", Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests.IgnoreNullValueWorks);
             QUnit.test("TypeNameHandlingWorks", Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests.TypeNameHandlingWorks);
             QUnit.test("AnonymousTypesWorks", Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests.AnonymousTypesWorks);
+            QUnit.test("FormattingWorks", Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests.FormattingWorks);
         }
     });
 
@@ -5148,7 +5149,7 @@ Bridge.assembly("Bridge.Test.Bridge.Newtonsoft.Json.Tests", function ($asm, glob
             GetContext: function () {
                 var $t;
                 if (this.context == null) {
-                    this.context = ($t=new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Bridge.Newtonsoft.Json.Tests", $t.ClassName = "Bridge.Newtonsoft.Json.Tests.DeserializationTests", $t.File = "file:///C:/projects/Bridge/v1/Json/Bridge.Newtonsoft.Json.Tests/DeserializationTests.cs", $t);
+                    this.context = ($t=new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Bridge.Newtonsoft.Json.Tests", $t.ClassName = "Bridge.Newtonsoft.Json.Tests.DeserializationTests", $t.File = "Bridge.Newtonsoft.Json.Tests\\DeserializationTests.cs", $t);
                 }
                 return this.context;
             }
@@ -5248,6 +5249,11 @@ Bridge.assembly("Bridge.Test.Bridge.Newtonsoft.Json.Tests", function ($asm, glob
                     var $t;
                     var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "AnonymousTypesWorks()", $t.Line = "287", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.AnonymousTypesWorks();
+                },
+                FormattingWorks: function (assert) {
+                    var $t;
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "FormattingWorks()", $t.Line = "296", $t));
+                    Bridge.Newtonsoft.Json.Tests.SerializationTests.FormattingWorks();
                 }
             }
         },
@@ -5258,7 +5264,7 @@ Bridge.assembly("Bridge.Test.Bridge.Newtonsoft.Json.Tests", function ($asm, glob
             GetContext: function () {
                 var $t;
                 if (this.context == null) {
-                    this.context = ($t=new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Bridge.Newtonsoft.Json.Tests", $t.ClassName = "Bridge.Newtonsoft.Json.Tests.SerializationTests", $t.File = "file:///C:/projects/Bridge/v1/Json/Bridge.Newtonsoft.Json.Tests/SerializationTests.cs", $t);
+                    this.context = ($t=new Bridge.Test.Runtime.FixtureContext(), $t.Project = "Bridge.Newtonsoft.Json.Tests", $t.ClassName = "Bridge.Newtonsoft.Json.Tests.SerializationTests", $t.File = "Bridge.Newtonsoft.Json.Tests\\SerializationTests.cs", $t);
                 }
                 return this.context;
             }

@@ -224,7 +224,7 @@ namespace Bridge.Newtonsoft.Json.Tests
         {
             var c = new ClassWithFields();
             dynamic raw = null;
-            //@ raw = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(c, {}, true);
+            //@ raw = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(c, 0, {}, true);
 
             Assert.AreEqual(System.Convert.ToBase64String(c.byteArrayField), raw.byteArrayField, "#1");
             Assert.AreEqual(c.guidField.ToString(), raw.guidField, "#2");
@@ -311,6 +311,18 @@ namespace Bridge.Newtonsoft.Json.Tests
             var json = JsonConvert.SerializeObject(v);
 
             Assert.AreEqual("{\"Amount\":108,\"Message\":\"Hello\"}", json);
+        }
+
+        [Test]
+        public static void FormattingWorks()
+        {
+            var v = new { Amount = 108, Message = "Hello" };
+            var json = JsonConvert.SerializeObject(v, Formatting.Indented);
+
+            Assert.AreEqual(@"{
+  ""Amount"": 108,
+  ""Message"": ""Hello""
+}", json);
         }
     }
 }

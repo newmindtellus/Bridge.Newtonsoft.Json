@@ -2,10 +2,20 @@
  * @version 1.0.0
  * @author Object.NET, Inc.
  * @copyright Copyright 2008-2017 Object.NET, Inc.
- * @compiler Bridge.NET 16.0.0-beta
+ * @compiler Bridge.NET 16.0.0-beta2
  */
 Bridge.assembly("Bridge.Newtonsoft.Json", function ($asm, globals) {
     "use strict";
+
+    Bridge.define("Bridge.Newtonsoft.Json.Formatting", {
+        $kind: "enum",
+        statics: {
+            fields: {
+                None: 0,
+                Indented: 1
+            }
+        }
+    });
 
     Bridge.define("Bridge.Newtonsoft.Json.JsonSerializerSettings", {
         statics: {

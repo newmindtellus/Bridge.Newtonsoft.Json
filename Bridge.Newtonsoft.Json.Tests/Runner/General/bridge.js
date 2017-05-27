@@ -1,7 +1,7 @@
 /**
- * @version   : 16.0.0-beta - Bridge.NET
+ * @version   : 16.0.0-beta2 - Bridge.NET
  * @author    : Object.NET, Inc. http://bridge.net/
- * @date      : 2017-05-01
+ * @date      : 2017-05-22
  * @copyright : Copyright 2008-2017 Object.NET, Inc. http://object.net/
  * @license   : See license.txt and https://github.com/bridgedotnet/Bridge/blob/master/LICENSE.md
  */
@@ -3261,11 +3261,14 @@
         
     });
 
+    Bridge.define("System.Void", {
+        $kind: "struct"
+    });
     // @source systemAssemblyVersion.js
 
     Bridge.init(function () {
-        Bridge.SystemAssembly.version = "16.0.0-beta";
-        Bridge.SystemAssembly.compiler = "16.0.0-beta";
+        Bridge.SystemAssembly.version = "16.0.0-beta2";
+        Bridge.SystemAssembly.compiler = "16.0.0-beta2";
     });
 
     Bridge.define("Bridge.Utils.SystemAssemblyVersion");
@@ -7081,6 +7084,11 @@ Bridge.Class.addExtend(System.Boolean, [System.IComparable$1(System.Boolean), Sy
 
             getHashCode: function (v) {
                 var value = Bridge.unbox(v, true);
+
+                if (value === 0) {
+                    return 0;
+                }
+
                 if (value === Number.POSITIVE_INFINITY) {
                     return 0x7FF00000;
                 }
@@ -7088,7 +7096,7 @@ Bridge.Class.addExtend(System.Boolean, [System.IComparable$1(System.Boolean), Sy
                 if (value === Number.NEGATIVE_INFINITY) {
                     return 0xFFF00000;
                 }
-                return value.toExponential();
+                return Bridge.getHashCode(value.toExponential());
             }
         }
     });
@@ -18637,8 +18645,8 @@ Bridge.Class.addExtend(System.String, [System.IComparable$1(System.String), Syst
         return Enumerable.from(this);
     };
 
-    Enumerable.prototype.toArray = function () {
-        var array = [];
+    Enumerable.prototype.toArray = function (T) {
+        var array = System.Array.init([], T || System.Object);
         this.forEach(function (x) { array.push(x); });
         return array;
     };

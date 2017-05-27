@@ -23,7 +23,16 @@ namespace Bridge.Newtonsoft.Json
         public static extern string SerializeObject(object value);
 
         /// <summary>
-        /// Serializes the specified object to a JSON string using <see cref="JsonSerializerSettings"/>.
+        /// Serializes the specified object to a JSON string using formatting.
+        /// </summary>
+        /// <param name="value">The object to serialize.</param>
+        /// <param name="formatting">Indicates how the output should be formatted.</param>
+        /// <returns>A JSON string representation of the object.</returns>
+        [Unbox(false)]
+        public static extern string SerializeObject(object value, Formatting formatting);
+
+        /// <summary>
+        /// Serializes the specified object to a JSON string using formatting and <see cref="JsonSerializerSettings"/>.
         /// </summary>
         /// <param name="value">The object to serialize.</param>
         /// <param name="settings">The <see cref="JsonSerializerSettings"/> used to serialize the object.
@@ -33,6 +42,19 @@ namespace Bridge.Newtonsoft.Json
         /// </returns>
         [Unbox(false)]
         public static extern string SerializeObject(object value, JsonSerializerSettings settings);
+
+        /// <summary>
+        /// Serializes the specified object to a JSON string using formatting and <see cref="JsonSerializerSettings"/>.
+        /// </summary>
+        /// <param name="value">The object to serialize.</param>
+        /// <param name="formatting">Indicates how the output should be formatted.</param>
+        /// <param name="settings">The <see cref="JsonSerializerSettings"/> used to serialize the object.
+        /// If this is <c>null</c>, default serialization settings will be used.</param>
+        /// <returns>
+        /// A JSON string representation of the object.
+        /// </returns>
+        [Unbox(false)]
+        public static extern string SerializeObject(object value, Formatting formatting, JsonSerializerSettings settings);
 
 
         /// <summary>

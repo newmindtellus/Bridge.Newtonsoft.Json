@@ -2,13 +2,26 @@
     {
         statics: {
             methods: {
-                SerializeObject: function (obj, settings, returnRaw, possibleType) {
+                stringify: function (value, formatting) {
+                    if (formatting === Bridge.Newtonsoft.Json.Formatting.Indented) {
+                        return JSON.stringify(value, null, "  ");
+                    }
+
+                    return JSON.stringify(value);
+                },
+
+                SerializeObject: function (obj, formatting, settings, returnRaw, possibleType) {
+                    if (Bridge.is(formatting, Bridge.Newtonsoft.Json.JsonSerializerSettings)) {
+                        settings = formatting;
+                        formatting = 0;
+                    }
+
                     if (obj == null) {
                         if (settings && settings.NullValueHandling === Bridge.Newtonsoft.Json.NullValueHandling.Ignore) {
                             return;
                         }
 
-                        return returnRaw ? null : JSON.stringify(null);
+                        return returnRaw ? null : this.stringify(null, formatting);
                     }
 
                     var objType = Bridge.getType(obj);
@@ -29,7 +42,7 @@
 
                     if (typeof obj === "function") {
                         var name = Bridge.getTypeName(obj);
-                        return returnRaw ? name : JSON.stringify(name);
+                        return returnRaw ? name : this.stringify(name, formatting);
                     } else if (typeof obj === "object") {
                         var type = possibleType || objType,
                             arr,
@@ -64,7 +77,7 @@
                         }
 
                         if (type === System.Guid) {
-                            return returnRaw ? obj.toString() : JSON.stringify(obj.toString());
+                            return returnRaw ? obj.toString() : this.stringify(obj.toString(), formatting);
                         } else if (type === System.Int64) {
                             return obj.toJSON();
                         } else if (type === System.UInt64) {
@@ -72,26 +85,26 @@
                         } else if (type === System.Decimal) {
                             return obj.toJSON();
                         } else if (type === System.DateTime) {
-                            return returnRaw ? obj.toJSON() : JSON.stringify(obj);
+                            return returnRaw ? obj.toJSON() : this.stringify(obj, formatting);
                         } else if (Bridge.isArray(null, type)) {
                             if (type.$elementType === System.Byte) {
                                 removeGuard();
                                 var json = System.Convert.toBase64String(obj);
-                                return returnRaw ? json : JSON.stringify(json);
+                                return returnRaw ? json : this.stringify(json, formatting);
                             }
 
                             arr = [];
 
                             for (i = 0; i < obj.length; i++) {
-                                arr.push(Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(obj[i], settings, true, type.$elementType));
+                                arr.push(Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(obj[i], formatting, settings, true, type.$elementType));
                             }
 
                             obj = arr;
                         } else if (Bridge.Reflection.isEnum(type)) {
                             var name = System.Enum.toString(type, obj);
-                            return returnRaw ? name : JSON.stringify(name);
+                            return returnRaw ? name : this.stringify(name, formatting);
                         } else if (type === System.Char) {
-                            return returnRaw ? String.fromCharCode(obj) : JSON.stringify(String.fromCharCode(obj));
+                            return returnRaw ? String.fromCharCode(obj) : this.stringify(String.fromCharCode(obj), formatting);
                         } else if (Bridge.Reflection.isAssignableFrom(System.Collections.IList, type)) {
                             var typeElement = System.Collections.Generic.List$1.getElementType(type),
                                 count = System.Array.getCount(obj, type);
@@ -99,7 +112,7 @@
                             arr = [];
 
                             for (i = 0; i < count; i++) {
-                                arr.push(Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(System.Array.getItem(obj, i), settings, true, typeElement));
+                                arr.push(Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(System.Array.getItem(obj, i), formatting, settings, true, typeElement));
                             }
 
                             obj = arr;
@@ -113,7 +126,7 @@
 
                             while (enm.moveNext()) {
                                 var entr = enm.Current;
-                                dict[Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(entr.key, settings, true, typeKey)] = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(entr.value, settings, true, typeValue);
+                                dict[Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(entr.key, formatting, settings, true, typeKey)] = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(entr.value, formatting, settings, true, typeValue);
                             }
 
                             obj = dict;
@@ -136,7 +149,7 @@
                                 } else {
                                     for (var key in obj) {
                                         if (obj.hasOwnProperty(key)) {
-                                            raw[key] = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(obj[key], settings, true);
+                                            raw[key] = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(obj[key], formatting, settings, true);
                                         }
                                     }
                                 }
@@ -147,7 +160,7 @@
                                 for (i = 0; i < fields.length; i++) {
                                     var f = fields[i],
                                         fname = camelCase ? (f.n.charAt(0).toLowerCase() + f.n.substr(1)) : f.n;
-                                    raw[fname] = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.Reflection.fieldAccess(f, obj), settings, true, f.rt);
+                                    raw[fname] = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.Reflection.fieldAccess(f, obj), formatting, settings, true, f.rt);
                                 }
 
                                 var properties = Bridge.Reflection.getMembers(type, 16, 20);
@@ -156,7 +169,7 @@
                                     var p = properties[i];
                                     if (!!p.g) {
                                         var pname = camelCase ? (p.n.charAt(0).toLowerCase() + p.n.substr(1)) : p.n;
-                                        raw[pname] = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.Reflection.midel(p.g, obj)(), settings, true, p.rt);
+                                        raw[pname] = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.Reflection.midel(p.g, obj)(), formatting, settings, true, p.rt);
                                     }
                                 }
                             }
@@ -167,7 +180,7 @@
                         removeGuard();
                     }
 
-                    return returnRaw ? obj : JSON.stringify(obj);
+                    return returnRaw ? obj : this.stringify(obj, formatting);
                 },
 
                 DeserializeObject: function (raw, type, settings, field) {

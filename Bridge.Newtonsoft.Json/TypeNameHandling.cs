@@ -31,7 +31,7 @@ namespace Bridge.Newtonsoft.Json
         /// <summary>
         /// Include the .NET type name when the type of the object being serialized is not the same as its declared type.
         /// Note that this doesn't include the root serialized object by default. To include the root object's type name in JSON
-        /// you must specify a root type object with <see cref="JsonConvert.SerializeObject(object, Type, JsonSerializerSettings)"/>
+        /// you must specify a root type object with JsonConvert.SerializeObject(object, Type, JsonSerializerSettings)
         /// </summary>
         Auto = 4
     }
