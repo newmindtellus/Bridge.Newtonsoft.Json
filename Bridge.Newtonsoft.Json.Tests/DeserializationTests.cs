@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Bridge.Html5;
 using Bridge.Newtonsoft.Json.Serialization;
+using Bridge.Newtonsoft.Json.Tests.Utilities;
 using Bridge.Test.NUnit;
 
 namespace Bridge.Newtonsoft.Json.Tests
@@ -489,6 +490,29 @@ namespace Bridge.Newtonsoft.Json.Tests
             Assert.True((object)entity.Address is Address);
             Assert.AreEqual(persons[1].Address.City, entity.Address.City);
             Assert.AreEqual(persons[1].Address.Street, entity.Address.Street);
+        }
+
+        [Test(ExpectedCount = 1)]
+        public static void TestN504()
+        {
+            var o = JsonConvert.DeserializeObject<bool>("true");
+            Assert.AreEqual(true, o, "Bridge544 bool");
+        }
+
+        [Test(ExpectedCount = 5)]
+        public static void TestN504Related()
+        {
+            var i = JsonConvert.DeserializeObject<int>("25");
+            Assert.AreEqual(25, i, "Bridge544 int");
+
+            var dbl = JsonConvert.DeserializeObject<double>("26.1");
+            Assert.AreEqual(26.1d, dbl, "Bridge544 double");
+
+            var d = Bridge.Json.Deserialize<decimal>("27.2");
+            DecimalHelper.AssertIsDecimalAndEqualTo(d, 27.2, "Bridge544 decimal");
+
+            var s = JsonConvert.DeserializeObject<string>("\"Some string\"");
+            Assert.AreEqual("Some string", s, "Bridge544 string");
         }
     }
 }

@@ -259,6 +259,23 @@ Bridge.assembly("Bridge.Newtonsoft.Json.Tests", function ($asm, globals) {
                     Bridge.Test.NUnit.Assert.True(Bridge.is(entity.Address, Bridge.Newtonsoft.Json.Tests.DeserializationTests.Address));
                     Bridge.Test.NUnit.Assert.AreEqual(persons[System.Array.index(1, persons)].Address.City, entity.Address.City);
                     Bridge.Test.NUnit.Assert.AreEqual(persons[System.Array.index(1, persons)].Address.Street, entity.Address.Street);
+                },
+                TestN504: function () {
+                    var o = Bridge.Newtonsoft.Json.JsonConvert.DeserializeObject("true", System.Boolean);
+                    Bridge.Test.NUnit.Assert.AreEqual$1(true, o, "Bridge544 bool");
+                },
+                TestN504Related: function () {
+                    var i = Bridge.Newtonsoft.Json.JsonConvert.DeserializeObject("25", System.Int32);
+                    Bridge.Test.NUnit.Assert.AreEqual$1(25, i, "Bridge544 int");
+
+                    var dbl = Bridge.Newtonsoft.Json.JsonConvert.DeserializeObject("26.1", System.Double);
+                    Bridge.Test.NUnit.Assert.AreEqual$1(26.1, dbl, "Bridge544 double");
+
+                    var d = Bridge.Json.deserialize("27.2", System.Decimal);
+                    Bridge.Newtonsoft.Json.Tests.Utilities.DecimalHelper.AssertIsDecimalAndEqualTo$1(d, 27.2, "Bridge544 decimal");
+
+                    var s = Bridge.Newtonsoft.Json.JsonConvert.DeserializeObject("\"Some string\"", System.String);
+                    Bridge.Test.NUnit.Assert.AreEqual$1("Some string", s, "Bridge544 string");
                 }
             }
         }
@@ -440,6 +457,193 @@ Bridge.assembly("Bridge.Newtonsoft.Json.Tests", function ($asm, globals) {
         }
     });
 
+    Bridge.define("Bridge.Newtonsoft.Json.Tests.Issues.Bridge1134", {
+        statics: {
+            methods: {
+                TestJsonArrayParse: function () {
+                    var o = Bridge.Newtonsoft.Json.JsonConvert.DeserializeObject("[1]", System.Array.type(System.Int32));
+                    Bridge.Test.NUnit.Assert.True(o != null);
+                    Bridge.Test.NUnit.Assert.AreEqual(1, o.length);
+                    Bridge.Test.NUnit.Assert.AreEqual(1, o[System.Array.index(0, o)]);
+                }
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438", {
+        statics: {
+            methods: {
+                TestJSONParse: function () {
+                    var $t;
+                    var serialized = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(($t=new Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438.Foo(), $t.Value = 100, $t));
+
+                    Bridge.Test.NUnit.Assert.NotNull$1(serialized, " serialized should not be null");
+
+                    var result = Bridge.Newtonsoft.Json.JsonConvert.DeserializeObject(serialized, Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438.Foo);
+
+                    Bridge.Test.NUnit.Assert.NotNull$1(result, " result should not be null");
+                    Bridge.Test.NUnit.Assert.AreEqual$1("Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438+Foo", Bridge.Reflection.getTypeFullName(Bridge.getType(result)), "Check result type name");
+                    Bridge.Test.NUnit.Assert.AreEqual$1(100, result.Value, "result.Value = 100");
+                },
+                TestJSONParseAsArray: function () {
+                    var $t;
+                    var serialized = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(System.Array.init([($t=new Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438.Foo(), $t.Value = 101, $t)], Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438.Foo));
+
+                    Bridge.Test.NUnit.Assert.NotNull$1(serialized, " serialized should not be null");
+
+                    var result = Bridge.Newtonsoft.Json.JsonConvert.DeserializeObject(serialized, System.Array.type(Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438.Foo));
+
+                    Bridge.Test.NUnit.Assert.NotNull$1(result, " result should not be null");
+                    Bridge.Test.NUnit.Assert.AreEqual$1("Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438+Foo[]", Bridge.Reflection.getTypeFullName(Bridge.getType(result)), "Check result type name");
+                    Bridge.Test.NUnit.Assert.AreEqual$1(1, result.length, "Check result length");
+                    Bridge.Test.NUnit.Assert.NotNull$1(result[System.Array.index(0, result)], " result[0] should not be null");
+                    Bridge.Test.NUnit.Assert.AreEqual$1("Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438+Foo", Bridge.Reflection.getTypeFullName(Bridge.getType(result[System.Array.index(0, result)])), "Check result[0] type name");
+                    Bridge.Test.NUnit.Assert.AreEqual$1(101, result[System.Array.index(0, result)].Value, "result[0].Value = 101");
+                }
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438.Foo", {
+        props: {
+            Value: 0
+        },
+        methods: {
+            SomeMethod: function () {
+                return System.String.concat("I'm ", Bridge.Reflection.getTypeFullName(Bridge.getType(this)), " and my value is ", this.Value);
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Newtonsoft.Json.Tests.Issues.Bridge2641", {
+        statics: {
+            methods: {
+                TestJsonCamelCaseForFields: function () {
+                    var $t;
+                    var c = ($t=new Bridge.Newtonsoft.Json.Tests.Issues.Bridge2641.Class1(), $t.Field1 = 1, $t.field2 = 2, $t);
+                    var json = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(c, ($t=new Bridge.Newtonsoft.Json.JsonSerializerSettings(), $t.ContractResolver = new Bridge.Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(), $t));
+                    Bridge.Test.NUnit.Assert.AreEqual("{\"field1\":1,\"field2\":2}", json);
+                    var deserialized = Bridge.Newtonsoft.Json.JsonConvert.DeserializeObject(json, Bridge.Newtonsoft.Json.Tests.Issues.Bridge2641.Class1, ($t=new Bridge.Newtonsoft.Json.JsonSerializerSettings(), $t.ContractResolver = new Bridge.Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(), $t));
+                    Bridge.Test.NUnit.Assert.AreEqual(1, deserialized.Field1);
+                    Bridge.Test.NUnit.Assert.AreEqual(2, deserialized.field2);
+
+                    json = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(c);
+                    Bridge.Test.NUnit.Assert.AreEqual("{\"Field1\":1,\"field2\":2}", json);
+                    deserialized = Bridge.Newtonsoft.Json.JsonConvert.DeserializeObject(json, Bridge.Newtonsoft.Json.Tests.Issues.Bridge2641.Class1);
+                    Bridge.Test.NUnit.Assert.AreEqual(1, deserialized.Field1);
+                    Bridge.Test.NUnit.Assert.AreEqual(2, deserialized.field2);
+                }
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Newtonsoft.Json.Tests.Issues.Bridge2641.Class1", {
+        fields: {
+            Field1: 0,
+            field2: 0
+        }
+    });
+
+    Bridge.define("Bridge.Newtonsoft.Json.Tests.Issues.Bridge2679", {
+        statics: {
+            methods: {
+                TestTypeNameHandling: function () {
+                    var $t;
+                    var obj1 = new Bridge.Newtonsoft.Json.Tests.Issues.Bridge2679.Test1(1);
+                    var obj2 = new (Bridge.Newtonsoft.Json.Tests.Issues.Bridge2679.Test2$1(System.Int32))(2);
+
+                    var json1 = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(obj1, ($t=new Bridge.Newtonsoft.Json.JsonSerializerSettings(), $t.TypeNameHandling = Bridge.Newtonsoft.Json.TypeNameHandling.Objects, $t));
+                    Bridge.Test.NUnit.Assert.AreEqual(System.String.concat("{\"$type\":\"", Bridge.Reflection.getTypeQName(Bridge.Newtonsoft.Json.Tests.Issues.Bridge2679.Test1), "\",\"Value\":1}"), json1);
+
+                    var json2 = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(obj2, ($t=new Bridge.Newtonsoft.Json.JsonSerializerSettings(), $t.TypeNameHandling = Bridge.Newtonsoft.Json.TypeNameHandling.Objects, $t));
+                    Bridge.Test.NUnit.Assert.AreEqual(System.String.concat("{\"$type\":\"", Bridge.Reflection.getTypeQName(Bridge.Newtonsoft.Json.Tests.Issues.Bridge2679.Test2$1(System.Int32)), "\",\"Value\":2}"), json2);
+                }
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Newtonsoft.Json.Tests.Issues.Bridge2679.Test1", {
+        props: {
+            Value: 0
+        },
+        ctors: {
+            ctor: function (value) {
+                this.$initialize();
+                this.Value = value;
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Newtonsoft.Json.Tests.Issues.Bridge2679.Test2$1", function (T) { return {
+        props: {
+            Value: Bridge.getDefaultValue(T)
+        },
+        ctors: {
+            ctor: function (value) {
+                this.$initialize();
+                this.Value = value;
+            }
+        }
+    }; });
+
+    Bridge.define("Bridge.Newtonsoft.Json.Tests.Issues.Bridge501", {
+        statics: {
+            methods: {
+                TestUseCase: function () {
+                    var list = $asm.$.Bridge.Newtonsoft.Json.Tests.Issues.Bridge501.f1(new (System.Collections.Generic.List$1(System.Int32))());
+                    var z = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(list); // this is ok
+                    Bridge.Test.NUnit.Assert.AreEqual$1("[7]", z, "List<int>");
+
+                    var b = $asm.$.Bridge.Newtonsoft.Json.Tests.Issues.Bridge501.f2(new Bridge.Newtonsoft.Json.Tests.Issues.Bridge501B());
+                    var y = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(b); // wrong, missing items
+                    Bridge.Test.NUnit.Assert.AreEqual$1("[1,2]", y, "Bridge501B");
+
+                    var a = $asm.$.Bridge.Newtonsoft.Json.Tests.Issues.Bridge501.f3(new Bridge.Newtonsoft.Json.Tests.Issues.Bridge501A()); // sine items is defined as member, push fails
+                    var x = Bridge.Newtonsoft.Json.JsonConvert.SerializeObject(a);
+                    Bridge.Test.NUnit.Assert.AreEqual$1("[7]", x, "Bridge501A");
+
+                    var c = Bridge.Newtonsoft.Json.JsonConvert.DeserializeObject(x, Bridge.Newtonsoft.Json.Tests.Issues.Bridge501A);
+                    Bridge.Test.NUnit.Assert.AreEqual$1("12", c.Items, "Bridge501A Parse c.Items");
+                    Bridge.Test.NUnit.Assert.AreEqual$1(7, c.getItem(0), "Bridge501A Parse c[0]");
+                }
+            }
+        }
+    });
+
+    Bridge.ns("Bridge.Newtonsoft.Json.Tests.Issues.Bridge501", $asm.$);
+
+    Bridge.apply($asm.$.Bridge.Newtonsoft.Json.Tests.Issues.Bridge501, {
+        f1: function (_o7) {
+            _o7.add(7);
+            return _o7;
+        },
+        f2: function (_o8) {
+            _o8.add(1);
+            _o8.add(2);
+            return _o8;
+        },
+        f3: function (_o9) {
+            _o9.add(7);
+            return _o9;
+        }
+    });
+
+    Bridge.define("Bridge.Newtonsoft.Json.Tests.Issues.Bridge501A", {
+        inherits: [System.Collections.Generic.List$1(System.Int32)],
+        fields: {
+            Items: null
+        },
+        ctors: {
+            init: function () {
+                this.Items = "12";
+            }
+        }
+    });
+
+    Bridge.define("Bridge.Newtonsoft.Json.Tests.Issues.Bridge501B", {
+        inherits: [System.Collections.Generic.List$1(System.Int32)]
+    });
+
     Bridge.define("Bridge.Newtonsoft.Json.Tests.SerializationTests", {
         statics: {
             methods: {
@@ -590,29 +794,29 @@ Bridge.assembly("Bridge.Newtonsoft.Json.Tests", function ($asm, globals) {
     Bridge.ns("Bridge.Newtonsoft.Json.Tests.SerializationTests", $asm.$);
 
     Bridge.apply($asm.$.Bridge.Newtonsoft.Json.Tests.SerializationTests, {
-        f1: function (_o9) {
-            _o9.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
-            _o9.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
-            _o9.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
-            return _o9;
-        },
-        f2: function (_o10) {
-            _o10.set("i1", Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
-            _o10.set("i2", Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
-            _o10.set("i3", Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
-            return _o10;
-        },
-        f3: function (_o11) {
-            _o11.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
-            _o11.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
-            _o11.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
-            return _o11;
-        },
-        f4: function (_o12) {
-            _o12.add(97);
-            _o12.add(98);
-            _o12.add(99);
+        f1: function (_o12) {
+            _o12.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
+            _o12.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
+            _o12.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
             return _o12;
+        },
+        f2: function (_o13) {
+            _o13.set("i1", Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
+            _o13.set("i2", Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
+            _o13.set("i3", Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
+            return _o13;
+        },
+        f3: function (_o14) {
+            _o14.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
+            _o14.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
+            _o14.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
+            return _o14;
+        },
+        f4: function (_o15) {
+            _o15.add(97);
+            _o15.add(98);
+            _o15.add(99);
+            return _o15;
         }
     });
 
@@ -669,17 +873,17 @@ Bridge.assembly("Bridge.Newtonsoft.Json.Tests", function ($asm, globals) {
     Bridge.ns("Bridge.Newtonsoft.Json.Tests.SerializationTests.ClassWithFields", $asm.$);
 
     Bridge.apply($asm.$.Bridge.Newtonsoft.Json.Tests.SerializationTests.ClassWithFields, {
-        f1: function (_o7) {
-            _o7.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
-            _o7.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
-            _o7.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
-            return _o7;
+        f1: function (_o10) {
+            _o10.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
+            _o10.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
+            _o10.add(Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
+            return _o10;
         },
-        f2: function (_o8) {
-            _o8.set("i1", Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
-            _o8.set("i2", Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
-            _o8.set("i3", Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
-            return _o8;
+        f2: function (_o11) {
+            _o11.set("i1", Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
+            _o11.set("i2", Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
+            _o11.set("i3", Bridge.Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
+            return _o11;
         }
     });
 
@@ -705,6 +909,23 @@ Bridge.assembly("Bridge.Newtonsoft.Json.Tests", function ($asm, globals) {
         props: {
             Owner: null,
             List1: null
+        }
+    });
+
+    Bridge.define("Bridge.Newtonsoft.Json.Tests.Utilities.DecimalHelper", {
+        statics: {
+            methods: {
+                AssertIsDecimalAndEqualTo$1: function (v, d, message) {
+                    if (message === void 0) { message = null; }
+                    Bridge.Test.NUnit.Assert.AreStrictEqual$1(true, Bridge.is(v, System.Decimal), message);
+                    Bridge.Test.NUnit.Assert.AreStrictEqual$1(System.Double.format(d, "G"), v.toString(), message);
+                },
+                AssertIsDecimalAndEqualTo: function (v, d, message) {
+                    if (message === void 0) { message = null; }
+                    Bridge.Test.NUnit.Assert.AreStrictEqual$1(true, Bridge.is(v, System.Decimal), message);
+                    Bridge.Test.NUnit.Assert.AreStrictEqual$1(Bridge.Int.format(d, "G"), v.toString(), message);
+                }
+            }
         }
     });
 
@@ -759,7 +980,7 @@ Bridge.assembly("Bridge.Newtonsoft.Json.Tests", function ($asm, globals) {
     });
 
     var $m = Bridge.setMetadata,
-        $n = [Bridge.Newtonsoft.Json.Tests,System,System.Collections.Generic];
+        $n = [Bridge.Newtonsoft.Json.Tests,System,System.Collections.Generic,Bridge.Newtonsoft.Json.Tests.Issues];
     $m($n[0].DeserializationTests.ClassWithFieldsAndNoInit, function () { return {"td":$n[0].DeserializationTests,"att":1048578,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"arrayField","t":4,"rt":$n[1].Array.type(System.Int32),"sn":"arrayField"},{"a":2,"n":"byteArrayField","t":4,"rt":$n[1].Array.type(System.Byte),"sn":"byteArrayField"},{"a":2,"n":"charField","t":4,"rt":$n[1].Char,"sn":"charField"},{"a":2,"n":"dateField","t":4,"rt":$n[1].DateTime,"sn":"dateField"},{"a":2,"n":"decimalField","t":4,"rt":$n[1].Decimal,"sn":"decimalField"},{"a":2,"n":"dictField","t":4,"rt":$n[2].IDictionary$2(System.String,Bridge.Newtonsoft.Json.Tests.DeserializationTests.E1),"sn":"dictField"},{"a":2,"n":"enumField","t":4,"rt":$n[0].DeserializationTests.E1,"sn":"enumField"},{"a":2,"n":"guidField","t":4,"rt":$n[1].Guid,"sn":"guidField"},{"a":2,"n":"listField","t":4,"rt":$n[2].IList$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests.E1),"sn":"listField"},{"a":2,"n":"longField","t":4,"rt":$n[1].Int64,"sn":"longField"},{"a":2,"n":"typeField","t":4,"rt":Function,"sn":"typeField"},{"a":2,"n":"ulongField","t":4,"rt":$n[1].UInt64,"sn":"ulongField"}]}; });
     $m($n[0].DeserializationTests.ClassWithFields, function () { return {"td":$n[0].DeserializationTests,"att":1048578,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"arrayField","t":4,"rt":$n[1].Array.type(System.Int32),"sn":"arrayField"},{"a":2,"n":"byteArrayField","t":4,"rt":$n[1].Array.type(System.Byte),"sn":"byteArrayField"},{"a":2,"n":"charField","t":4,"rt":$n[1].Char,"sn":"charField"},{"a":2,"n":"dateField","t":4,"rt":$n[1].DateTime,"sn":"dateField"},{"a":2,"n":"decimalField","t":4,"rt":$n[1].Decimal,"sn":"decimalField"},{"a":2,"n":"dictField","t":4,"rt":$n[2].IDictionary$2(System.String,Bridge.Newtonsoft.Json.Tests.DeserializationTests.E1),"sn":"dictField"},{"a":2,"n":"enumField","t":4,"rt":$n[0].DeserializationTests.E1,"sn":"enumField"},{"a":2,"n":"guidField","t":4,"rt":$n[1].Guid,"sn":"guidField"},{"a":2,"n":"listField","t":4,"rt":$n[2].IList$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests.E1),"sn":"listField"},{"a":2,"n":"longField","t":4,"rt":$n[1].Int64,"sn":"longField"},{"a":2,"n":"typeField","t":4,"rt":Function,"sn":"typeField"},{"a":2,"n":"ulongField","t":4,"rt":$n[1].UInt64,"sn":"ulongField"}]}; });
     $m($n[0].DeserializationTests.Class1, function () { return {"td":$n[0].DeserializationTests,"att":1048578,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"Sub1","t":16,"rt":$n[0].DeserializationTests.SubClass1,"g":{"a":2,"n":"get_Sub1","t":8,"rt":$n[0].DeserializationTests.SubClass1,"fg":"Sub1"},"s":{"a":2,"n":"set_Sub1","t":8,"p":[$n[0].DeserializationTests.SubClass1],"rt":$n[1].Void,"fs":"Sub1"},"fn":"Sub1"},{"a":2,"n":"Sub2","t":16,"rt":$n[0].DeserializationTests.SubClass2,"g":{"a":2,"n":"get_Sub2","t":8,"rt":$n[0].DeserializationTests.SubClass2,"fg":"Sub2"},"s":{"a":2,"n":"set_Sub2","t":8,"p":[$n[0].DeserializationTests.SubClass2],"rt":$n[1].Void,"fs":"Sub2"},"fn":"Sub2"}]}; });
@@ -776,4 +997,10 @@ Bridge.assembly("Bridge.Newtonsoft.Json.Tests", function ($asm, globals) {
     $m($n[0].SerializationTests.SubClass2, function () { return {"td":$n[0].SerializationTests,"att":1048578,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"List1","t":16,"rt":$n[2].List$1(System.Char),"g":{"a":2,"n":"get_List1","t":8,"rt":$n[2].List$1(System.Char),"fg":"List1"},"s":{"a":2,"n":"set_List1","t":8,"p":[$n[2].List$1(System.Char)],"rt":$n[1].Void,"fs":"List1"},"fn":"List1"},{"a":2,"n":"Owner","t":16,"rt":$n[0].SerializationTests.Class1,"g":{"a":2,"n":"get_Owner","t":8,"rt":$n[0].SerializationTests.Class1,"fg":"Owner"},"s":{"a":2,"n":"set_Owner","t":8,"p":[$n[0].SerializationTests.Class1],"rt":$n[1].Void,"fs":"Owner"},"fn":"Owner"}]}; });
     $m($n[0].SerializationTests.Class2, function () { return {"td":$n[0].SerializationTests,"att":1048578,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"IntProp","t":16,"rt":$n[1].Int32,"g":{"a":2,"n":"get_IntProp","t":8,"rt":$n[1].Int32,"fg":"IntProp"},"s":{"a":2,"n":"set_IntProp","t":8,"p":[$n[1].Int32],"rt":$n[1].Void,"fs":"IntProp"},"fn":"IntProp"}]}; });
     $m($n[0].SerializationTests.Class3, function () { return {"td":$n[0].SerializationTests,"att":1048578,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"StringProp","t":16,"rt":$n[1].String,"g":{"a":2,"n":"get_StringProp","t":8,"rt":$n[1].String,"fg":"StringProp"},"s":{"a":2,"n":"set_StringProp","t":8,"p":[$n[1].String],"rt":$n[1].Void,"fs":"StringProp"},"fn":"StringProp"}]}; });
+    $m($n[3].Bridge1438.Foo, function () { return {"td":$n[3].Bridge1438,"att":1048578,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"SomeMethod","t":8,"sn":"SomeMethod","rt":$n[1].String},{"a":2,"n":"Value","t":16,"rt":$n[1].Int32,"g":{"a":2,"n":"get_Value","t":8,"rt":$n[1].Int32,"fg":"Value"},"s":{"a":2,"n":"set_Value","t":8,"p":[$n[1].Int32],"rt":$n[1].Void,"fs":"Value"},"fn":"Value"}]}; });
+    $m($n[3].Bridge2641.Class1, function () { return {"td":$n[3].Bridge2641,"att":1048578,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"Field1","t":4,"rt":$n[1].Int32,"sn":"Field1"},{"a":2,"n":"field2","t":4,"rt":$n[1].Int32,"sn":"field2"}]}; });
+    $m($n[3].Bridge2679.Test1, function () { return {"td":$n[3].Bridge2679,"att":1048578,"a":2,"m":[{"a":2,"n":".ctor","t":1,"p":[$n[1].Int32],"pi":[{"n":"value","pt":$n[1].Int32,"ps":0}],"sn":"ctor"},{"a":2,"n":"Value","t":16,"rt":$n[1].Int32,"g":{"a":2,"n":"get_Value","t":8,"rt":$n[1].Int32,"fg":"Value"},"s":{"a":1,"n":"set_Value","t":8,"p":[$n[1].Int32],"rt":$n[1].Void,"fs":"Value"},"fn":"Value"}]}; });
+    $m($n[3].Bridge2679.Test2$1, function (T) { return {"td":$n[3].Bridge2679,"att":1048578,"a":2,"m":[{"a":2,"n":".ctor","t":1,"p":[T],"pi":[{"n":"value","pt":T,"ps":0}],"sn":"ctor"},{"a":2,"n":"Value","t":16,"rt":T,"g":{"a":2,"n":"get_Value","t":8,"rt":T,"fg":"Value"},"s":{"a":1,"n":"set_Value","t":8,"p":[T],"rt":$n[1].Void,"fs":"Value"},"fn":"Value"}]}; });
+    $m($n[3].Bridge501A, function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"Items","t":4,"rt":$n[1].String,"sn":"Items"}]}; });
+    $m($n[3].Bridge501B, function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"}]}; });
 });
