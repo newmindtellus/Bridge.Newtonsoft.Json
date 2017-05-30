@@ -39,7 +39,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Runner", "Tests\Runner\", "
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "49753"
+		VWDPort = "49757"
 		SlnRelativePath = "Tests\Runner\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection

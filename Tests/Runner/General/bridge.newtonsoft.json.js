@@ -10,6 +10,7 @@
 // @source @generated.js
 
 /**
+ * Provides Bridge.NET support for a limited subset of the Newtonsoft.Json API
  * @version 1.0.0-beta2
  * @author Object.NET, Inc.
  * @copyright Copyright 2008-2017 Object.NET, Inc.
