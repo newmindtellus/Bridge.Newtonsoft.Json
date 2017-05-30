@@ -1,13 +1,3 @@
-/**
- * Provides Bridge.NET support for a limited subset of the Newtonsoft.Json API
- * @version 1.0.0-beta2
- * @author Object.NET, Inc.
- * @copyright Copyright 2008-2017 Object.NET, Inc.
- * @compiler Bridge.NET 16.0.0-beta2
- */
-Bridge.assembly("Bridge.Newtonsoft.Json", function ($asm, globals) {
-    "use strict";
-
     Bridge.define("Bridge.Newtonsoft.Json.Formatting", {
         $kind: "enum",
         statics: {
@@ -89,5 +79,4 @@ Bridge.assembly("Bridge.Newtonsoft.Json", function ($asm, globals) {
     Bridge.define("Bridge.Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver", {
         inherits: [Bridge.Newtonsoft.Json.Serialization.IContractResolver]
     });
-});
 

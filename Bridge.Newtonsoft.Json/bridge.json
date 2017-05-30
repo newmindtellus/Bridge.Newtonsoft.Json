@@ -8,7 +8,7 @@
     "level": "None"
   },
   "assembly": {
-    "disableInitAssembly": false,
+    "disableInitAssembly": true,
     "enableReservedNamespaces": true
     //fullName: ""
   },
@@ -29,8 +29,10 @@
       "header": "Resources/.auxiliary/Header.js",
       "remark": "\n\n// @source @{name}\n",
       "files": [
+        "Resources/.auxiliary/AssemblyBegin.js",
         "Resources/.generated/generated.js",
-        "Resources/Manual/JsonConvert.js"
+        "Resources/Manual/JsonConvert.js",
+        "Resources/.auxiliary/AssemblyEnd.js"
       ]
     }
   ]
