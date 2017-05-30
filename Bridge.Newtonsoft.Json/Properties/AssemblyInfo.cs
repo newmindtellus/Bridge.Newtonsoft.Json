@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using Bridge;
 
 [assembly: AssemblyTitle("Bridge.Newtonsoft.Json")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Provides Bridge.NET support for a limited subset of the Newtonsoft.Json API")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Bridge.Newtonsoft.Json")]
 [assembly: AssemblyCulture("")]
