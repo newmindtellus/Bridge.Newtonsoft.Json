@@ -15,15 +15,15 @@ Install-Package Bridge.Newtonsoft.Json
 http://www.newtonsoft.com/json/help/html/Overload_Newtonsoft_Json_JsonConvert_SerializeObject.htm
 
 Supported | Name | Description
----- | ---- | ----
-:white_check_mark: | SerializeObject(Object) | Serializes the specified object to a JSON string.
-:white_check_mark: | SerializeObject(Object, [Formatting](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#formatting)) | Serializes the specified object to a JSON string using formatting.
-:white_check_mark: | SerializeObject(Object, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings) | Serializes the specified object to a JSON string using JsonSerializerSettings.
-:white_check_mark: | SerializeObject(Object, [Formatting](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#formatting), [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Serializes the specified object to a JSON string using formatting and JsonSerializerSettings.
-:negative_squared_cross_mark: | SerializeObject(Object, JsonConverter[]) | Serializes the specified object to a JSON string using a collection of JsonConverter.
-:negative_squared_cross_mark: | SerializeObject(Object, [Formatting](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#formatting), JsonConverter[]) | Serializes the specified object to a JSON string using formatting and a collection of JsonConverter.
-:negative_squared_cross_mark: | SerializeObject(Object, Type, JsonSerializerSettings) | Serializes the specified object to a JSON string using a type, formatting and JsonSerializerSettings.
-:negative_squared_cross_mark: | SerializeObject(Object, Type, [Formatting](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#formatting), [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Serializes the specified object to a JSON string using a type, formatting and JsonSerializerSettings.
+:----: | ---- | ----
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | SerializeObject(Object) | Serializes the specified object to a JSON string.
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | SerializeObject(Object, [Formatting](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#formatting)) | Serializes the specified object to a JSON string using formatting.
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | SerializeObject(Object, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings) | Serializes the specified object to a JSON string using JsonSerializerSettings.
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | SerializeObject(Object, [Formatting](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#formatting), [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Serializes the specified object to a JSON string using formatting and JsonSerializerSettings.
+![not supported](https://speed.bridge.net/icons/png/16px/circle-slash.png) | SerializeObject(Object, JsonConverter[]) | Serializes the specified object to a JSON string using a collection of JsonConverter.
+![not supported](https://speed.bridge.net/icons/png/16px/circle-slash.png) | SerializeObject(Object, [Formatting](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#formatting), JsonConverter[]) | Serializes the specified object to a JSON string using formatting and a collection of JsonConverter.
+![not supported](https://speed.bridge.net/icons/png/16px/circle-slash.png) | SerializeObject(Object, Type, JsonSerializerSettings) | Serializes the specified object to a JSON string using a type, formatting and JsonSerializerSettings.
+![not supported](https://speed.bridge.net/icons/png/16px/circle-slash.png) | SerializeObject(Object, Type, [Formatting](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#formatting), [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Serializes the specified object to a JSON string using a type, formatting and JsonSerializerSettings.
 
 #### Example
 
@@ -54,15 +54,15 @@ string output = JsonConvert.SerializeObject(product);
 http://www.newtonsoft.com/json/help/html/Overload_Newtonsoft_Json_JsonConvert_DeserializeObject.htm
 
 Supported | Name | Description
----- | ---- | ----
-:white_check_mark: | DeserializeObject(String) | Deserializes the JSON to a .NET object.
-:white_check_mark: | DeserializeObject<T>(String) | Deserializes the JSON to the specified .NET type.
-:white_check_mark: | DeserializeObject(String, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Deserializes the JSON to a .NET object using JsonSerializerSettings.
-:white_check_mark: | DeserializeObject<T>(String, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Deserializes the JSON to the specified .NET type using JsonSerializerSettings.
-:white_check_mark: | DeserializeObject(String, Type) | Deserializes the JSON to the specified .NET type.
-:white_check_mark: | DeserializeObject(String, Type, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Deserializes the JSON to the specified .NET type using JsonSerializerSettings.
-:negative_squared_cross_mark: | DeserializeObject<T>(String, JsonConverter[]) | Deserializes the JSON to the specified .NET type using a collection of JsonConverter.
-:negative_squared_cross_mark: | DeserializeObject(String, Type, JsonConverter[]) | Deserializes the JSON to the specified .NET type using a collection of JsonConverter.
+:----: | ---- | ----
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | DeserializeObject(String) | Deserializes the JSON to a .NET object.
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | DeserializeObject<T>(String) | Deserializes the JSON to the specified .NET type.
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | DeserializeObject(String, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Deserializes the JSON to a .NET object using JsonSerializerSettings.
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | DeserializeObject<T>(String, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Deserializes the JSON to the specified .NET type using JsonSerializerSettings.
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | DeserializeObject(String, Type) | Deserializes the JSON to the specified .NET type.
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | DeserializeObject(String, Type, [JsonSerializerSettings](https://github.com/bridgedotnet/Bridge.Newtonsoft.Json/blob/master/README.md#jsonserializersettings)) | Deserializes the JSON to the specified .NET type using JsonSerializerSettings.
+![not supported](https://speed.bridge.net/icons/png/16px/circle-slash.png) | DeserializeObject<T>(String, JsonConverter[]) | Deserializes the JSON to the specified .NET type using a collection of JsonConverter.
+![not supported](https://speed.bridge.net/icons/png/16px/circle-slash.png) | DeserializeObject(String, Type, JsonConverter[]) | Deserializes the JSON to the specified .NET type using a collection of JsonConverter.
 
 #### Example
 
@@ -114,9 +114,9 @@ public class Product
 http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_Formatting.htm
 
 Supported | Name | Value | Description
----- | ---- | ---- | ----
-:white_check_mark: | None | 0 | No special formatting is applied. This is the default.
-:white_check_mark: | Indented | 1 | Causes child objects to be indented according to the Indentation and IndentChar settings.
+:----: | ---- | ---- | ----
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | None | 0 | No special formatting is applied. This is the default.
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | Indented | 1 | Causes child objects to be indented according to the Indentation and IndentChar settings.
 
 ## JsonSerializerSettings
 
@@ -138,18 +138,18 @@ new JsonSerializerSettings
 http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_TypeNameHandling.htm
 
 Supported | Name | Value | Description
----- | ---- | ---- | ----
-:white_check_mark: | None | 0 | Do not include the .NET type name when serializing types.
-:white_check_mark: | Objects | 1 | Include the .NET type name when serializing into a JSON object structure.
-:negative_squared_cross_mark: | Arrays | 2 | Include the .NET type name when serializing into a JSON array structure.
-:negative_squared_cross_mark: | All | 3 | Always include the .NET type name when serializing.
-:negative_squared_cross_mark: | Auto | 4 | Include the .NET type name when the type of the object being serialized is not the same as its declared type. Note that this doesn't include the root serialized object by default. To include the root object's type name in JSON you must specify a root type object with SerializeObject(Object, Type, JsonSerializerSettings) or Serialize(JsonWriter, Object, Type).
+:----: | ---- | ---- | ----
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | None | 0 | Do not include the .NET type name when serializing types.
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | Objects | 1 | Include the .NET type name when serializing into a JSON object structure.
+![not supported](https://speed.bridge.net/icons/png/16px/circle-slash.png) | Arrays | 2 | Include the .NET type name when serializing into a JSON array structure.
+![not supported](https://speed.bridge.net/icons/png/16px/circle-slash.png) | All | 3 | Always include the .NET type name when serializing.
+![not supported](https://speed.bridge.net/icons/png/16px/circle-slash.png) | Auto | 4 | Include the .NET type name when the type of the object being serialized is not the same as its declared type. Note that this doesn't include the root serialized object by default. To include the root object's type name in JSON you must specify a root type object with SerializeObject(Object, Type, JsonSerializerSettings) or Serialize(JsonWriter, Object, Type).
 
 ### NullValueHandling
 
 http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_NullValueHandling.htm
 
 Supported | Name | Value | Description
----- | ---- | ---- | ----
-:white_check_mark: | Include | 0 | Include null values when serializing and deserializing objects.
-:white_check_mark: | Ignore | 1 | Ignore null values when serializing and deserializing objects.
+:----: | ---- | ---- | ----
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | Include | 0 | Include null values when serializing and deserializing objects.
+![supported](https://speed.bridge.net/icons/png/16px/check.png) | Ignore | 1 | Ignore null values when serializing and deserializing objects.
