@@ -1,5 +1,5 @@
 /**
- * @version 1.0.0
+ * @version 1.0.0-beta2
  * @author Object.NET, Inc.
  * @copyright Copyright 2008-2017 Object.NET, Inc.
  * @compiler Bridge.NET 16.0.0-beta2

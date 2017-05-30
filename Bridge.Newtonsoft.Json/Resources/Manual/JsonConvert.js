@@ -1,5 +1,4 @@
-    Bridge.define("Bridge.Newtonsoft.Json.JsonConvert",
-    {
+    Bridge.define("Bridge.Newtonsoft.Json.JsonConvert", {
         statics: {
             methods: {
                 stringify: function (value, formatting) {

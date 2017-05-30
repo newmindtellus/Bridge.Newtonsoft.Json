@@ -319,10 +319,7 @@ namespace Bridge.Newtonsoft.Json.Tests
             var v = new { Amount = 108, Message = "Hello" };
             var json = JsonConvert.SerializeObject(v, Formatting.Indented);
 
-            Assert.AreEqual(@"{
-  ""Amount"": 108,
-  ""Message"": ""Hello""
-}", json);
+            Assert.AreEqual("{\n  \"Amount\": 108,\n  \"Message\": \"Hello\"\n}", json);
         }
     }
 }

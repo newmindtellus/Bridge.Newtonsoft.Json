@@ -1,5 +1,5 @@
 /*
- * @version   : 1.0.0 - A Bridge.NET implementation of Newtonsoft.Json
+ * @version   : 1.0.0-beta2 - A Bridge.NET implementation of Newtonsoft.Json
  * @author    : Object.NET, Inc. http://www.bridge.net/
  * @date      : 2017-02-02
  * @copyright : Copyright (c) 2008-2017, Object.NET, Inc. (http://www.object.net/). All rights reserved.
@@ -10,7 +10,7 @@
 // @source @generated.js
 
 /**
- * @version 1.0.0
+ * @version 1.0.0-beta2
  * @author Object.NET, Inc.
  * @copyright Copyright 2008-2017 Object.NET, Inc.
  * @compiler Bridge.NET 16.0.0-beta2
@@ -104,8 +104,7 @@ Bridge.assembly("Bridge.Newtonsoft.Json", function ($asm, globals) {
 
 // @source @JsonConvert.js
 
-    Bridge.define("Bridge.Newtonsoft.Json.JsonConvert",
-    {
+    Bridge.define("Bridge.Newtonsoft.Json.JsonConvert", {
         statics: {
             methods: {
                 stringify: function (value, formatting) {
