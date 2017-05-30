@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Bridge.Newtonsoft.Json
+﻿namespace Bridge.Newtonsoft.Json
 {
     /// <summary>
     /// Specifies type name handling options for the <see cref="JsonConvert"/>.

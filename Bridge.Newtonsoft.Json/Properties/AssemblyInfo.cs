@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-using Bridge;
 
 [assembly: AssemblyTitle("Bridge.Newtonsoft.Json")]
 [assembly: AssemblyDescription("Provides Bridge.NET support for a limited subset of the Newtonsoft.Json API")]

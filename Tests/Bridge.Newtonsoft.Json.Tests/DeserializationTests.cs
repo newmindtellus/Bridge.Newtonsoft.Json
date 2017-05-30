@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Bridge.Html5;
-using Bridge.Newtonsoft.Json.Serialization;
+﻿using Bridge.Newtonsoft.Json.Serialization;
 using Bridge.Newtonsoft.Json.Tests.Utilities;
 using Bridge.Test.NUnit;
+using System;
+using System.Collections.Generic;
 
 namespace Bridge.Newtonsoft.Json.Tests
 {
@@ -123,17 +122,31 @@ namespace Bridge.Newtonsoft.Json.Tests
         }
 
         [Reflectable]
-        interface INamedEntity
+        private interface INamedEntity
         {
-            string Name { get; set; }
+            string Name
+            {
+                get; set;
+            }
         }
 
         [Reflectable]
-        class Person : INamedEntity
+        private class Person : INamedEntity
         {
-            public Guid Id { get; set; }
-            public string Name { get; set; }
-            public Address Address { get; set; }
+            public Guid Id
+            {
+                get; set;
+            }
+
+            public string Name
+            {
+                get; set;
+            }
+
+            public Address Address
+            {
+                get; set;
+            }
 
             public Person(Guid id, string name, string city, string street)
             {
@@ -156,8 +169,15 @@ namespace Bridge.Newtonsoft.Json.Tests
         [Reflectable]
         public class Address
         {
-            public string City { get; set; }
-            public string Street { get; set; }
+            public string City
+            {
+                get; set;
+            }
+
+            public string Street
+            {
+                get; set;
+            }
         }
 
         #endregion Test data
@@ -231,10 +251,10 @@ namespace Bridge.Newtonsoft.Json.Tests
         [Test]
         public static void ArrayWorks()
         {
-            int[] intArr = new[] {1, 2, 3};
+            int[] intArr = new[] { 1, 2, 3 };
             Assert.AreEqual(intArr, JsonConvert.DeserializeObject<int[]>("[1,2,3]"));
 
-            long[] longArr = new[] {1L, 2, 3L};
+            long[] longArr = new[] { 1L, 2, 3L };
             long[] jsonLongArr = JsonConvert.DeserializeObject<long[]>("[1,2,3]");
             Assert.AreEqual(longArr.Length, jsonLongArr.Length);
             Assert.True(longArr[0] == jsonLongArr[0]);
@@ -278,7 +298,7 @@ namespace Bridge.Newtonsoft.Json.Tests
         [Test]
         public static void IListWorks()
         {
-            var list = new List<E1> {E1.Item1, E1.Item2, E1.Item3};
+            var list = new List<E1> { E1.Item1, E1.Item2, E1.Item3 };
             var jsonList = JsonConvert.DeserializeObject<List<E1>>("[\"Item1\",\"Item2\",\"Item3\"]");
             Assert.AreEqual(list.Count, jsonList.Count);
             Assert.True(list[0] == jsonList[0]);
@@ -407,7 +427,7 @@ namespace Bridge.Newtonsoft.Json.Tests
         public static void CamelCaseSettingWorks()
         {
             var json = "{\"intProp\":10}";
-            var deserialized = JsonConvert.DeserializeObject<Class2>(json, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver()});
+            var deserialized = JsonConvert.DeserializeObject<Class2>(json, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
             Assert.AreEqual(10, deserialized.IntProp);
 
             json = "{\"IntProp\":10}";

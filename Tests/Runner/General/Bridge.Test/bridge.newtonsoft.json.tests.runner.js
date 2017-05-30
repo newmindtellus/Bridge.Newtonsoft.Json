@@ -5056,7 +5056,7 @@ Bridge.assembly("Bridge.Test.Bridge.Newtonsoft.Json.Tests", function ($asm, glob
             methods: {
                 TestJsonArrayParse: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.Issues.Bridge1134).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.Bridge1134, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestJsonArrayParse()", $t.Line = "10", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.Issues.Bridge1134).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.Bridge1134, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestJsonArrayParse()", $t.Line = "9", $t));
                     Bridge.Newtonsoft.Json.Tests.Issues.Bridge1134.TestJsonArrayParse();
                 }
             }
@@ -5081,12 +5081,12 @@ Bridge.assembly("Bridge.Test.Bridge.Newtonsoft.Json.Tests", function ($asm, glob
             methods: {
                 TestJSONParse: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.Bridge1438, 4, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestJSONParse()", $t.Line = "21", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.Bridge1438, 4, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestJSONParse()", $t.Line = "23", $t));
                     Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438.TestJSONParse();
                 },
                 TestJSONParseAsArray: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.Bridge1438, 7, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestJSONParseAsArray()", $t.Line = "35", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.Bridge1438, 7, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestJSONParseAsArray()", $t.Line = "37", $t));
                     Bridge.Newtonsoft.Json.Tests.Issues.Bridge1438.TestJSONParseAsArray();
                 }
             }
@@ -5111,7 +5111,7 @@ Bridge.assembly("Bridge.Test.Bridge.Newtonsoft.Json.Tests", function ($asm, glob
             methods: {
                 TestJsonCamelCaseForFields: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.Issues.Bridge2641).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.Bridge2641, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestJsonCamelCaseForFields()", $t.Line = "20", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.Issues.Bridge2641).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.Bridge2641, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestJsonCamelCaseForFields()", $t.Line = "17", $t));
                     Bridge.Newtonsoft.Json.Tests.Issues.Bridge2641.TestJsonCamelCaseForFields();
                 }
             }
@@ -5136,7 +5136,7 @@ Bridge.assembly("Bridge.Test.Bridge.Newtonsoft.Json.Tests", function ($asm, glob
             methods: {
                 TestTypeNameHandling: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.Issues.Bridge2679).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.Bridge2679, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestTypeNameHandling()", $t.Line = "33", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.Issues.Bridge2679).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.Bridge2679, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestTypeNameHandling()", $t.Line = "37", $t));
                     Bridge.Newtonsoft.Json.Tests.Issues.Bridge2679.TestTypeNameHandling();
                 }
             }
@@ -5161,7 +5161,7 @@ Bridge.assembly("Bridge.Test.Bridge.Newtonsoft.Json.Tests", function ($asm, glob
             methods: {
                 TestUseCase: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.Issues.Bridge501).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.Bridge501, 5, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestUseCase()", $t.Line = "25", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.Issues.Bridge501).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.Bridge501, 5, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestUseCase()", $t.Line = "24", $t));
                     Bridge.Newtonsoft.Json.Tests.Issues.Bridge501.TestUseCase();
                 }
             }
@@ -5186,107 +5186,107 @@ Bridge.assembly("Bridge.Test.Bridge.Newtonsoft.Json.Tests", function ($asm, glob
             methods: {
                 ByteArrayWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ByteArrayWorks()", $t.Line = "160", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ByteArrayWorks()", $t.Line = "180", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.ByteArrayWorks();
                 },
                 GuidWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "GuidWorks()", $t.Line = "167", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "GuidWorks()", $t.Line = "187", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.GuidWorks();
                 },
                 TypeWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TypeWorks()", $t.Line = "174", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TypeWorks()", $t.Line = "194", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.TypeWorks();
                 },
                 CharWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "CharWorks()", $t.Line = "180", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "CharWorks()", $t.Line = "200", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.CharWorks();
                 },
                 Int64Works: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "Int64Works()", $t.Line = "186", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "Int64Works()", $t.Line = "206", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.Int64Works();
                 },
                 UInt64Works: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "UInt64Works()", $t.Line = "197", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "UInt64Works()", $t.Line = "217", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.UInt64Works();
                 },
                 DecimalWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "DecimalWorks()", $t.Line = "208", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "DecimalWorks()", $t.Line = "228", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.DecimalWorks();
                 },
                 DateTimeWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "DateTimeWorks()", $t.Line = "216", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "DateTimeWorks()", $t.Line = "236", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.DateTimeWorks();
                 },
                 ArrayWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ArrayWorks()", $t.Line = "226", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ArrayWorks()", $t.Line = "246", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.ArrayWorks();
                 },
                 ComplexArrayWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ComplexArrayWorks()", $t.Line = "243", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ComplexArrayWorks()", $t.Line = "263", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.ComplexArrayWorks();
                 },
                 EnumWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "EnumWorks()", $t.Line = "267", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "EnumWorks()", $t.Line = "287", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.EnumWorks();
                 },
                 IListWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "IListWorks()", $t.Line = "273", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "IListWorks()", $t.Line = "293", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.IListWorks();
                 },
                 IDictionaryWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "IDictionaryWorks()", $t.Line = "284", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "IDictionaryWorks()", $t.Line = "304", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.IDictionaryWorks();
                 },
                 TypeWithFieldWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TypeWithFieldWorks()", $t.Line = "298", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TypeWithFieldWorks()", $t.Line = "318", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.TypeWithFieldWorks();
                 },
                 ComplexPropertiesWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ComplexPropertiesWorks()", $t.Line = "325", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ComplexPropertiesWorks()", $t.Line = "345", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.ComplexPropertiesWorks();
                 },
                 CamelCaseSettingWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "CamelCaseSettingWorks()", $t.Line = "386", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "CamelCaseSettingWorks()", $t.Line = "406", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.CamelCaseSettingWorks();
                 },
                 IgnoreNullValueWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "IgnoreNullValueWorks()", $t.Line = "398", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "IgnoreNullValueWorks()", $t.Line = "418", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.IgnoreNullValueWorks();
                 },
                 AnonymousTypesWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "AnonymousTypesWorks()", $t.Line = "420", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "AnonymousTypesWorks()", $t.Line = "440", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.AnonymousTypesWorks();
                 },
                 TypeNameHandlingWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TypeNameHandlingWorks()", $t.Line = "435", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TypeNameHandlingWorks()", $t.Line = "455", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.TypeNameHandlingWorks();
                 },
                 TestN504: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, 1, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestN504()", $t.Line = "475", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, 1, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestN504()", $t.Line = "495", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.TestN504();
                 },
                 TestN504Related: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, 5, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestN504Related()", $t.Line = "482", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.DeserializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.DeserializationTests, 5, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TestN504Related()", $t.Line = "502", $t));
                     Bridge.Newtonsoft.Json.Tests.DeserializationTests.TestN504Related();
                 }
             }
@@ -5311,97 +5311,97 @@ Bridge.assembly("Bridge.Test.Bridge.Newtonsoft.Json.Tests", function ($asm, glob
             methods: {
                 ByteArrayWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ByteArrayWorks()", $t.Line = "104", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ByteArrayWorks()", $t.Line = "103", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.ByteArrayWorks();
                 },
                 GuidWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "GuidWorks()", $t.Line = "111", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "GuidWorks()", $t.Line = "110", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.GuidWorks();
                 },
                 TypeWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TypeWorks()", $t.Line = "118", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TypeWorks()", $t.Line = "117", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.TypeWorks();
                 },
                 CharWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "CharWorks()", $t.Line = "124", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "CharWorks()", $t.Line = "123", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.CharWorks();
                 },
                 Int64Works: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "Int64Works()", $t.Line = "131", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "Int64Works()", $t.Line = "130", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.Int64Works();
                 },
                 UInt64Works: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "UInt64Works()", $t.Line = "141", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "UInt64Works()", $t.Line = "140", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.UInt64Works();
                 },
                 DecimalWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "DecimalWorks()", $t.Line = "151", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "DecimalWorks()", $t.Line = "150", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.DecimalWorks();
                 },
                 DateTimeWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "DateTimeWorks()", $t.Line = "170", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "DateTimeWorks()", $t.Line = "169", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.DateTimeWorks();
                 },
                 ArrayWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ArrayWorks()", $t.Line = "178", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ArrayWorks()", $t.Line = "177", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.ArrayWorks();
                 },
                 EnumWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "EnumWorks()", $t.Line = "191", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "EnumWorks()", $t.Line = "190", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.EnumWorks();
                 },
                 IListWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "IListWorks()", $t.Line = "197", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "IListWorks()", $t.Line = "196", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.IListWorks();
                 },
                 IDictionaryWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "IDictionaryWorks()", $t.Line = "204", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "IDictionaryWorks()", $t.Line = "203", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.IDictionaryWorks();
                 },
                 TypeWithFieldWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TypeWithFieldWorks()", $t.Line = "212", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TypeWithFieldWorks()", $t.Line = "211", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.TypeWithFieldWorks();
                 },
                 ComplexPropertiesWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ComplexPropertiesWorks()", $t.Line = "234", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "ComplexPropertiesWorks()", $t.Line = "233", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.ComplexPropertiesWorks();
                 },
                 CamelCaseSettingWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "CamelCaseSettingWorks()", $t.Line = "255", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "CamelCaseSettingWorks()", $t.Line = "254", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.CamelCaseSettingWorks();
                 },
                 IgnoreNullValueWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "IgnoreNullValueWorks()", $t.Line = "266", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "IgnoreNullValueWorks()", $t.Line = "265", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.IgnoreNullValueWorks();
                 },
                 TypeNameHandlingWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TypeNameHandlingWorks()", $t.Line = "277", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "TypeNameHandlingWorks()", $t.Line = "276", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.TypeNameHandlingWorks();
                 },
                 AnonymousTypesWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "AnonymousTypesWorks()", $t.Line = "287", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "AnonymousTypesWorks()", $t.Line = "286", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.AnonymousTypesWorks();
                 },
                 FormattingWorks: function (assert) {
                     var $t;
-                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "FormattingWorks()", $t.Line = "296", $t));
+                    var t = Bridge.Test.Runtime.TestFixture$1(Bridge.Newtonsoft.Json.Tests.SerializationTests).BeforeTest(false, assert, Bridge.Test.Runtime.BridgeNewtonsoftJsonTestsRunner.SerializationTests, void 0, ($t=new Bridge.Test.Runtime.TestContext(), $t.Method = "FormattingWorks()", $t.Line = "295", $t));
                     Bridge.Newtonsoft.Json.Tests.SerializationTests.FormattingWorks();
                 }
             }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Bridge.Newtonsoft.Json.Serialization;
+﻿using Bridge.Newtonsoft.Json.Serialization;
 
 namespace Bridge.Newtonsoft.Json
 {
@@ -23,8 +19,14 @@ namespace Bridge.Newtonsoft.Json
         /// <value>Null value handling.</value>
         public NullValueHandling NullValueHandling
         {
-            get { return _nullValueHandling ?? DefaultNullValueHandling; }
-            set { _nullValueHandling = value; }
+            get
+            {
+                return _nullValueHandling ?? DefaultNullValueHandling;
+            }
+            set
+            {
+                _nullValueHandling = value;
+            }
         }
 
         /// <summary>
@@ -38,8 +40,14 @@ namespace Bridge.Newtonsoft.Json
         /// <value>The type name handling.</value>
         public TypeNameHandling TypeNameHandling
         {
-            get { return _typeNameHandling ?? DefaultTypeNameHandling; }
-            set { _typeNameHandling = value; }
+            get
+            {
+                return _typeNameHandling ?? DefaultTypeNameHandling;
+            }
+            set
+            {
+                _typeNameHandling = value;
+            }
         }
 
         /// <summary>
@@ -47,6 +55,9 @@ namespace Bridge.Newtonsoft.Json
         /// serializing .NET objects to JSON and vice versa.
         /// </summary>
         /// <value>The contract resolver.</value>
-        public IContractResolver ContractResolver { get; set; }
+        public IContractResolver ContractResolver
+        {
+            get; set;
+        }
     }
 }

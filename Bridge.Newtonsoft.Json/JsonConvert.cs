@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Bridge.Newtonsoft.Json
 {
@@ -56,7 +53,6 @@ namespace Bridge.Newtonsoft.Json
         [Unbox(false)]
         public static extern string SerializeObject(object value, Formatting formatting, JsonSerializerSettings settings);
 
-
         /// <summary>
         /// Deserializes the JSON to the specified .NET type.
         /// </summary>
@@ -64,7 +60,6 @@ namespace Bridge.Newtonsoft.Json
         /// <param name="type">The <see cref="Type"/> of object being deserialized.</param>
         /// <returns>The deserialized object from the JSON string.</returns>
         public static extern object DeserializeObject(string value, Type type);
-
 
         /// <summary>
         /// Deserializes the JSON to the specified .NET type.

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Bridge.Html5;
-using Bridge.Newtonsoft.Json.Serialization;
+﻿using Bridge.Newtonsoft.Json.Serialization;
 using Bridge.Test.NUnit;
+using System;
+using System.Collections.Generic;
 
 namespace Bridge.Newtonsoft.Json.Tests
 {

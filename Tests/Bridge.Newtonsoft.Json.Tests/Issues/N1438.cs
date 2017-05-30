@@ -1,4 +1,3 @@
-using Bridge.Html5;
 using Bridge.Test.NUnit;
 
 namespace Bridge.Newtonsoft.Json.Tests.Issues
@@ -10,7 +9,10 @@ namespace Bridge.Newtonsoft.Json.Tests.Issues
         [Reflectable]
         public class Foo
         {
-            public int Value { get; set; }
+            public int Value
+            {
+                get; set;
+            }
 
             public string SomeMethod()
             {

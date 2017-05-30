@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Bridge.Test.NUnit;
+﻿using Bridge.Test.NUnit;
 
 namespace Bridge.Newtonsoft.Json.Tests.Utilities
 {

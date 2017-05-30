@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Bridge.Test.NUnit;
 
 namespace Bridge.Newtonsoft.Json.Tests.Issues
@@ -16,7 +14,10 @@ namespace Bridge.Newtonsoft.Json.Tests.Issues
                 Value = value;
             }
 
-            public int Value { get; private set; }
+            public int Value
+            {
+                get; private set;
+            }
         }
 
         [Reflectable(true)]
@@ -27,7 +28,10 @@ namespace Bridge.Newtonsoft.Json.Tests.Issues
                 Value = value;
             }
 
-            public T Value { get; private set; }
+            public T Value
+            {
+                get; private set;
+            }
         }
 
         [Test]
@@ -36,8 +40,8 @@ namespace Bridge.Newtonsoft.Json.Tests.Issues
             var obj1 = new Test1(1);
             var obj2 = new Test2<int>(2);
 
-            var json1 = JsonConvert.SerializeObject(obj1, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects});
-            Assert.AreEqual("{\"$type\":\""+ typeof(Test1).AssemblyQualifiedName + "\",\"Value\":1}", json1);
+            var json1 = JsonConvert.SerializeObject(obj1, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects });
+            Assert.AreEqual("{\"$type\":\"" + typeof(Test1).AssemblyQualifiedName + "\",\"Value\":1}", json1);
 
             var json2 = JsonConvert.SerializeObject(obj2, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
             Assert.AreEqual("{\"$type\":\"" + typeof(Test2<int>).AssemblyQualifiedName + "\",\"Value\":2}", json2);

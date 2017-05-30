@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-
 namespace Bridge.Newtonsoft.Json.Serialization
 {
     /// <summary>

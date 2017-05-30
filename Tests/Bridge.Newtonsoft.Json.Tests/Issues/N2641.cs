@@ -1,6 +1,3 @@
-using System;
-using System.Text.RegularExpressions;
-using Bridge.Html5;
 using Bridge.Newtonsoft.Json.Serialization;
 using Bridge.Test.NUnit;
 
