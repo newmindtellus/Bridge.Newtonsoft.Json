@@ -59,10 +59,7 @@
     <Compile Include="TypeNameHandling.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\.auxiliary\End.js" />
-    <Content Include="Resources\.auxiliary\Finally.js" />
     <Content Include="Resources\.auxiliary\Header.js" />
-    <Content Include="Resources\.auxiliary\Init.js" />
     <Content Include="Resources\.generated\bridge.newtonsoft.json.js" />
     <Content Include="Resources\Manual\JsonConvert.js" />
   </ItemGroup>
