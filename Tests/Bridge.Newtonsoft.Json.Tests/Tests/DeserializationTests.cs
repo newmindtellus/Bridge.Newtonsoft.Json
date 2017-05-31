@@ -528,7 +528,7 @@ namespace Bridge.Newtonsoft.Json.Tests
             var dbl = JsonConvert.DeserializeObject<double>("26.1");
             Assert.AreEqual(26.1d, dbl, "Bridge544 double");
 
-            var d = Bridge.Json.Deserialize<decimal>("27.2");
+            var d = JsonConvert.DeserializeObject<decimal>("27.2");
             DecimalHelper.AssertIsDecimalAndEqualTo(d, 27.2, "Bridge544 decimal");
 
             var s = JsonConvert.DeserializeObject<string>("\"Some string\"");

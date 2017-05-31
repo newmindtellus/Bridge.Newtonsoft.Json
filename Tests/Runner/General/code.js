@@ -271,7 +271,7 @@ Bridge.assembly("Bridge.Newtonsoft.Json.Tests", function ($asm, globals) {
                     var dbl = Bridge.Newtonsoft.Json.JsonConvert.DeserializeObject("26.1", System.Double);
                     Bridge.Test.NUnit.Assert.AreEqual$1(26.1, dbl, "Bridge544 double");
 
-                    var d = Bridge.Json.deserialize("27.2", System.Decimal);
+                    var d = Bridge.Newtonsoft.Json.JsonConvert.DeserializeObject("27.2", System.Decimal);
                     Bridge.Newtonsoft.Json.Tests.Utilities.DecimalHelper.AssertIsDecimalAndEqualTo$1(d, 27.2, "Bridge544 decimal");
 
                     var s = Bridge.Newtonsoft.Json.JsonConvert.DeserializeObject("\"Some string\"", System.String);
