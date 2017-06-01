@@ -12,7 +12,7 @@ Install-Package Bridge.Newtonsoft.Json
 
 ## JsonConvert.SerializeObject
 
-http://www.newtonsoft.com/json/help/html/Overload_Newtonsoft_Json_JsonConvert_SerializeObject.htm
+Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/Overload_Newtonsoft_Json_JsonConvert_SerializeObject.htm).
 
 Supported | Name | Description
 :----: | ---- | ----
@@ -51,7 +51,7 @@ string output = JsonConvert.SerializeObject(product);
 
 ## JsonConvert.DeserializeObject
 
-http://www.newtonsoft.com/json/help/html/Overload_Newtonsoft_Json_JsonConvert_DeserializeObject.htm
+Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/Overload_Newtonsoft_Json_JsonConvert_DeserializeObject.htm).
 
 Supported | Name | Description
 :----: | ---- | ----
@@ -70,9 +70,9 @@ Supported | Name | Description
 Product deserializedProduct = JsonConvert.DeserializeObject<Product>(output);
 ```
 
-## Bridge.Json (Existing)
+## Deck.NET
 
-https://deck.net/3b6d225b2487d12c5587c77e160c971e
+https://dev.deck.net/newtonsoft.json
 
 ```csharp
 public class Program
@@ -85,33 +85,38 @@ public class Program
         product.ExpiryDate = new DateTime(2008, 12, 28);
         product.Price = 3.99M;
         product.Sizes = new string[] { "Small", "Medium", "Large" };
-        
-        string output = Bridge.Json.Serialize(product);
-        
+
+        string output = JsonConvert.SerializeObject(product, Formatting.Indented);
+
+        // Write the json string
         Console.WriteLine(output);
-        
-        Product deserializedProduct = Bridge.Json.Deserialize<Product>(output);
-        
-        Console.WriteLine(deserializedProduct);
+
+        // Deserialize the json back into a real Product
+        Product deserializedProduct = JsonConvert.DeserializeObject<Product>(output);
+
+        // Write the properties
+        Console.WriteLine(deserializedProduct.Name);
+        Console.WriteLine(deserializedProduct.ExpiryDate);
+        Console.WriteLine(deserializedProduct.Price);
+        Console.WriteLine(deserializedProduct.Sizes);
     }
 }
 
-[Reflectable]
 public class Product
 {
     public string Name { get; set; }
     
     public DateTime ExpiryDate { get; set; }
-    
+
     public decimal Price { get; set; }
-    
+
     public string[] Sizes { get; set; }
 }
 ```
 
 ## Formatting
 
-http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_Formatting.htm
+Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_Formatting.htm).
 
 Supported | Name | Value | Description
 :----: | ---- | ---- | ----
@@ -120,11 +125,11 @@ Supported | Name | Value | Description
 
 ## JsonSerializerSettings
 
-http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm
+Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm).
 
 ### ContractResolver
 
-http://www.newtonsoft.com/json/help/html/ContractResolver.htm#CamelCasePropertyNamesContractResolver
+Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/ContractResolver.htm#CamelCasePropertyNamesContractResolver).
 
 ```csharp
 new JsonSerializerSettings 
@@ -135,7 +140,7 @@ new JsonSerializerSettings
 
 ### TypeNameHandling
 
-http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_TypeNameHandling.htm
+Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_TypeNameHandling.htm).
 
 Supported | Name | Value | Description
 :----: | ---- | ---- | ----
@@ -147,7 +152,7 @@ Supported | Name | Value | Description
 
 ### NullValueHandling
 
-http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_NullValueHandling.htm
+Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_NullValueHandling.htm).
 
 Supported | Name | Value | Description
 :----: | ---- | ---- | ----
