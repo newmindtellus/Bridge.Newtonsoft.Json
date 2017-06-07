@@ -4471,7 +4471,7 @@ Bridge.assembly("Bridge.Test.Newtonsoft.Json.Tests", function ($asm, globals) {
                 },
                 GetAssert: function () {
                     var $t;
-                    var a = ($t = QUnit.config.current).assert;
+                    var a = Bridge.unbox(($t = QUnit.config.current).assert);
 
                     return a;
                 },

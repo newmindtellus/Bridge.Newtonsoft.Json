@@ -1,7 +1,7 @@
 /**
  * @version   : 16.0.0-beta2 - Bridge.NET
  * @author    : Object.NET, Inc. http://bridge.net/
- * @date      : 2017-05-22
+ * @date      : 2017-06-07
  * @copyright : Copyright 2008-2017 Object.NET, Inc. http://object.net/
  * @license   : See license.txt and https://github.com/bridgedotnet/Bridge/blob/master/LICENSE.md
  */
@@ -26003,14 +26003,14 @@ Bridge.define("System.Text.RegularExpressions.RegexParser", {
                     var con = Bridge.global.console;
 
                     if (con && con.log) {
-                        con.log(value);
+                        con.log(Bridge.unbox(value));
                     }
                 },
                 WriteLine: function (value) {
                     var con = Bridge.global.console;
 
                     if (con && con.log) {
-                        con.log(value);
+                        con.log(Bridge.unbox(value));
                     }
                 },
                 TransformChars: function (buffer, all, index, count) {
