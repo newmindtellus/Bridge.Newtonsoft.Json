@@ -7,16 +7,22 @@
   "logging": {
     "level": "None"
   },
+  "html": {
+    "disabled": true
+  },
   "assembly": {
     "disableInitAssembly": true,
     "enableReservedNamespaces": true
-    //fullName: ""
   },
   "fileName": "generated.js",
-  "combineScripts": true,
+  "combineScripts": false,
   "resources": [
     {
       "name": "bridge.js",
+      "extract": false
+    },
+    {
+      "name": "bridge.meta.js",
       "extract": false
     },
     {
