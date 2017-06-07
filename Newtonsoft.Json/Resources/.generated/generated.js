@@ -79,4 +79,3 @@
     Bridge.define("Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver", {
         inherits: [Newtonsoft.Json.Serialization.IContractResolver]
     });
-
