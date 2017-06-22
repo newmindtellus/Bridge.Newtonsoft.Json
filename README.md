@@ -18,7 +18,9 @@ Install-Package Bridge.Newtonsoft.Json
 
 ## JsonConvert.SerializeObject
 
-Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/Overload_Newtonsoft_Json_JsonConvert_SerializeObject.htm).
+Serializes the specified object to a JSON string.
+
+Original **SerializeObject** [documentation](http://www.newtonsoft.com/json/help/html/Overload_Newtonsoft_Json_JsonConvert_SerializeObject.htm) from Newtonsoft.Json.
 
 Supported | Name | Description
 :----: | ---- | ----
@@ -57,7 +59,9 @@ string output = JsonConvert.SerializeObject(product);
 
 ## JsonConvert.DeserializeObject
 
-Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/Overload_Newtonsoft_Json_JsonConvert_DeserializeObject.htm).
+Deserializes the JSON to a .NET object.
+
+Original **DeserializeObject** [documentation](http://www.newtonsoft.com/json/help/html/Overload_Newtonsoft_Json_JsonConvert_DeserializeObject.htm) from Newtonsoft.Json.
 
 Supported | Name | Description
 :----: | ---- | ----
@@ -122,7 +126,9 @@ public class Product
 
 ## Formatting
 
-Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_Formatting.htm).
+Specifies formatting options for the JsonTextWriter.
+
+Original **Formatting** [documentation](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_Formatting.htm) from Newtonsoft.Json.
 
 Supported | Name | Value | Description
 :----: | ---- | ---- | ----
@@ -131,11 +137,11 @@ Supported | Name | Value | Description
 
 ## JsonSerializerSettings
 
-Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm).
+Original **JsonSerializerSettings** [documentation](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) from Newtonsoft.Json.
 
 ### ContractResolver
 
-Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/ContractResolver.htm#CamelCasePropertyNamesContractResolver).
+Original **ContractResolver** [documentation](http://www.newtonsoft.com/json/help/html/ContractResolver.htm#CamelCasePropertyNamesContractResolver) from Newtonsoft.Json.
 
 ```csharp
 new JsonSerializerSettings 
@@ -146,7 +152,9 @@ new JsonSerializerSettings
 
 ### TypeNameHandling
 
-Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_TypeNameHandling.htm).
+Specifies type name handling options for the JsonSerializer.
+
+Original **TypeNameHandling** [documentation](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_TypeNameHandling.htm) from Newtonsoft.Json.
 
 Supported | Name | Value | Description
 :----: | ---- | ---- | ----
@@ -158,9 +166,72 @@ Supported | Name | Value | Description
 
 ### NullValueHandling
 
-Original Newtonsoft.Json [documentation](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_NullValueHandling.htm).
+Specifies null value handling options for the JsonSerializer.
+
+Original **NullValueHandling** [documentation](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_NullValueHandling.htm) from Newtonsoft.Json.
 
 Supported | Name | Value | Description
 :----: | ---- | ---- | ----
 ![supported](https://speed.bridge.net/icons/png/16px/check.png) | Include | 0 | Include null values when serializing and deserializing objects.
 ![supported](https://speed.bridge.net/icons/png/16px/check.png) | Ignore | 1 | Ignore null values when serializing and deserializing objects.
+
+## JsonConstructor Attribute
+
+Instructs the JsonSerializer to use the specified constructor when deserializing that object.
+
+Original **[JsonConstructor]** [documentation](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonConstructorAttribute.htm) from Newtonsoft.Json.
+
+https://deck.net/5adc821b73491a122a51fd229ee1a8d3
+
+```csharp
+using System;
+using Newtonsoft.Json;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var x = Message.Empty.Add("abc");
+        var json = JsonConvert.SerializeObject(x);
+        
+        Console.WriteLine(json);
+        
+        var cloneX = JsonConvert.DeserializeObject<Message>(json);
+        
+        Console.WriteLine(cloneX.Value);
+    }
+}
+
+public class Message
+{
+  
+  static Message _empty = new Message("");
+    
+  public static Message Empty 
+    { 
+        get 
+        {
+            return _empty; 
+        } 
+        private set 
+        { 
+            _empty = value; 
+        } 
+    }
+  
+    private Message(bool value) { }
+    
+    [JsonConstructor]
+    private Message(string value)
+    {
+        Value = value;
+    }
+  
+    public string Value { get; private set; }
+  
+    public Message Add(string value)
+    {
+        return new Message(Value + value);
+    }
+}
+```
