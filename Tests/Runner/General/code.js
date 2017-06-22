@@ -680,6 +680,35 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
         inherits: [System.Collections.Generic.List$1(System.Int32)]
     });
 
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case10", {
+        statics: {
+            methods: {
+                TestPropertiesWithSameReferenceValue: function () {
+                    var $t;
+                    var a = {  };
+
+                    var json = Newtonsoft.Json.JsonConvert.SerializeObject(new Newtonsoft.Json.Tests.Issues.Case10.ClassWithMissingProperty(a, a), ($t = new Newtonsoft.Json.JsonSerializerSettings(), $t.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Objects, $t));
+
+                    Bridge.Test.NUnit.Assert.AreEqual("{\"$type\":\"Newtonsoft.Json.Tests.Issues.Case10+ClassWithMissingProperty, Newtonsoft.Json.Tests\",\"Prop1\":{\"$type\":\"System.Object, mscorlib\"},\"Prop2\":{\"$type\":\"System.Object, mscorlib\"}}", json);
+                }
+            }
+        }
+    });
+
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case10.ClassWithMissingProperty", {
+        props: {
+            Prop1: null,
+            Prop2: null
+        },
+        ctors: {
+            ctor: function (prop1, prop2) {
+                this.$initialize();
+                this.Prop1 = prop1;
+                this.Prop2 = prop2;
+            }
+        }
+    });
+
     Bridge.define("Newtonsoft.Json.Tests.Issues.Case4", {
         statics: {
             methods: {
