@@ -406,7 +406,7 @@ Bridge.assembly("Newtonsoft.Json", function ($asm, globals) {
                                     for (var i = 0; i < raw.length; i++) {
                                         arr[i] = Newtonsoft.Json.JsonConvert.DeserializeObject(raw[i], elementType, settings, true);
                                     }
-                                    args.push(arr); 
+                                    args.push(arr);
                                     settings.$list = true;
                                 }
                             } else {
