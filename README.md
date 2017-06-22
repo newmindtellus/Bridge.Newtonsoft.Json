@@ -2,6 +2,10 @@
 
 The **Bridge.Newtonsoft.Json** package provides [Bridge.NET](http://bridge.net/) support for a limited subset of the [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) API. See it working on [Deck.NET](https://deck.net/newtonsoft.json)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/rg5v87synus9wnun/branch/master?svg=true)](https://ci.appveyor.com/project/ObjectDotNet/bridge-newtonsoft-json/branch/master)
+[![Build Status](https://travis-ci.org/bridgedotnet/Bridge.Newtonsoft.Json.svg?branch=master)](https://travis-ci.org/bridgedotnet/Bridge.Newtonsoft.Json)
+[![NuGet Status](https://img.shields.io/nuget/v/Bridge.Newtonsoft.Json.svg)](https://www.nuget.org/packages/Bridge.Newtonsoft.Json)
+
 **NOTE:** Only the features listed below are supported.
 
 ## Installation
