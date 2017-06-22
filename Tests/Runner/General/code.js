@@ -769,6 +769,71 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
         }
     });
 
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case6", {
+        statics: {
+            methods: {
+                TestJsonConstructor: function () {
+                    var x = Newtonsoft.Json.Tests.Issues.Case6.MyOtherString.Empty.Add("abc");
+                    var json = Newtonsoft.Json.JsonConvert.SerializeObject(x);
+                    Bridge.Test.NUnit.Assert.AreEqual("{\"Value\":\"abc\"}", json);
+
+                    var cloneX = Newtonsoft.Json.JsonConvert.DeserializeObject(json, Newtonsoft.Json.Tests.Issues.Case6.MyOtherString);
+                    Bridge.Test.NUnit.Assert.NotNull(cloneX);
+                    Bridge.Test.NUnit.Assert.AreEqual("abc", cloneX.Value);
+                },
+                TestMultipleJsonConstructor: function () {
+                    Bridge.Test.NUnit.Assert.Throws$2(Newtonsoft.Json.JsonException, $asm.$.Newtonsoft.Json.Tests.Issues.Case6.f1);
+                }
+            }
+        }
+    });
+
+    Bridge.ns("Newtonsoft.Json.Tests.Issues.Case6", $asm.$);
+
+    Bridge.apply($asm.$.Newtonsoft.Json.Tests.Issues.Case6, {
+        f1: function () {
+            Newtonsoft.Json.JsonConvert.DeserializeObject("{}", Newtonsoft.Json.Tests.Issues.Case6.MultipleJsonConstructors);
+        }
+    });
+
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case6.MultipleJsonConstructors", {
+        ctors: {
+            $ctor1: function (s) {
+                this.$initialize();
+            },
+            ctor: function (i) {
+                this.$initialize();
+            }
+        }
+    });
+
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case6.MyOtherString", {
+        statics: {
+            props: {
+                Empty: null
+            },
+            ctors: {
+                init: function () {
+                    this.Empty = new Newtonsoft.Json.Tests.Issues.Case6.MyOtherString("");
+                }
+            }
+        },
+        props: {
+            Value: null
+        },
+        ctors: {
+            ctor: function (value) {
+                this.$initialize();
+                this.Value = value;
+            }
+        },
+        methods: {
+            Add: function (value) {
+                return new Newtonsoft.Json.Tests.Issues.Case6.MyOtherString(System.String.concat(this.Value, value));
+            }
+        }
+    });
+
     Bridge.define("Newtonsoft.Json.Tests.SerializationTests", {
         statics: {
             methods: {
