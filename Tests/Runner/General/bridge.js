@@ -1,7 +1,7 @@
 /**
- * @version   : 16.0.0-beta3 - Bridge.NET
+ * @version   : 16.0.0-beta4 - Bridge.NET
  * @author    : Object.NET, Inc. http://bridge.net/
- * @date      : 2017-06-19
+ * @date      : 2017-06-27
  * @copyright : Copyright 2008-2017 Object.NET, Inc. http://object.net/
  * @license   : See license.txt and https://github.com/bridgedotnet/Bridge/blob/master/LICENSE.md
  */
@@ -131,7 +131,7 @@
         virtual: function (name, isClass) {
             var type = Bridge.unroll(name);
 
-            if (!type) {
+            if (!type || !Bridge.isFunction(type)) {
                 var old = Bridge.Class.staticInitAllow;
                 type = isClass ? Bridge.define(name) : Bridge.definei(name);
                 Bridge.Class.staticInitAllow = true;
@@ -1918,6 +1918,12 @@
             return null;
         },
 
+        toStringFn: function(type) {
+            return function(value) {
+                return System.Enum.toString(type, value);
+            };
+        },
+
         toString: function (enumType, value, forceFlags) {
             if (arguments.length === 0) {
                 return "System.Enum";
@@ -3301,8 +3307,8 @@
     // @source systemAssemblyVersion.js
 
     Bridge.init(function () {
-        Bridge.SystemAssembly.version = "16.0.0-beta3";
-        Bridge.SystemAssembly.compiler = "16.0.0-beta3";
+        Bridge.SystemAssembly.version = "16.0.0-beta4";
+        Bridge.SystemAssembly.compiler = "16.0.0-beta4";
     });
 
     Bridge.define("Bridge.Utils.SystemAssemblyVersion");
@@ -4710,14 +4716,6 @@
                 return System.String.formatProvider.apply(System.String, [formatProvider, this.format].concat(this.args));
             }
         }
-    });
-
-    var $box_ = {};
-
-    Bridge.ns("System.Boolean", $box_);
-
-    Bridge.apply($box_.System.Boolean, {
-        toString: function (obj) { return System.Boolean.toString(obj); }
     });
 
     // @source formattableStringFactory.js
@@ -6683,7 +6681,7 @@ Bridge.Class.addExtend(System.Boolean, [System.IComparable$1(System.Boolean), Sy
             },
 
             format: function (number, format, provider) {
-                return Bridge.Int.format(number, format, provider, System.Double);
+                return Bridge.Int.format(number, format || 'G', provider, System.Double);
             },
 
             equals: function (v1, v2) {
@@ -6740,7 +6738,7 @@ Bridge.Class.addExtend(System.Boolean, [System.IComparable$1(System.Boolean), Sy
             tryParse: System.Double.tryParse,
 
             format: function (number, format, provider) {
-                return Bridge.Int.format(number, format, provider, System.Single);
+                return Bridge.Int.format(number, format || 'G', provider, System.Single);
             },
 
             equals: function (v1, v2) {
@@ -8393,7 +8391,6 @@ Bridge.Class.addExtend(System.Boolean, [System.IComparable$1(System.Boolean), Sy
                                  needRemoveDot = part.length == 0;
 
                                  break;
-                            
                             case "u":
                             case "f":
                             case "ff":
@@ -8998,6 +8995,22 @@ Bridge.Class.addExtend(System.Boolean, [System.IComparable$1(System.Boolean), Sy
 
             subdd: function (a, b) {
                 return Bridge.hasValue$1(a, b) ? (new System.TimeSpan((a - b) * 10000)) : null;
+            },
+
+            addMonths: function (dt, m) {
+                if (!Bridge.hasValue(dt)) {
+                    return null;
+                }
+
+                var r = new Date(dt.getTime());
+                var d = r.getDate();
+                r.setMonth(r.getMonth() + m);
+
+                if (r.getDate() != d) {
+                    r.setDate(0);
+                }
+
+                return r;
             },
 
             gt: function (a, b) {
@@ -9691,13 +9704,13 @@ Bridge.Class.addExtend(System.Boolean, [System.IComparable$1(System.Boolean), Sy
                 throw new System.Diagnostics.Contracts.ContractException(failureKind, displayMessage, userMessage, conditionText, innerException);
             }
         },
-        assert: function (failureKind, condition, message) {
-            if (!condition()) {
+        assert: function (failureKind, scope, condition, message) {
+            if (!condition.call(scope)) {
                 System.Diagnostics.Contracts.Contract.reportFailure(failureKind, message, condition, null);
             }
         },
-        requires: function (TException, condition, message) {
-            if (!condition()) {
+        requires: function (TException, scope, condition, message) {
+            if (!condition.call(scope)) {
                 System.Diagnostics.Contracts.Contract.reportFailure(0, message, condition, null, TException);
             }
         },
@@ -26393,7 +26406,7 @@ Bridge.define("System.Text.RegularExpressions.RegexParser", {
                     if (this.index >= this.bitarray.Count) {
                         throw new System.InvalidOperationException("Enumeration already finished.");
                     }
-                    return Bridge.box(this.currentElement, System.Boolean, $box_.System.Boolean.toString);
+                    return Bridge.box(this.currentElement, System.Boolean, System.Boolean.toString);
                 }
             }
         },

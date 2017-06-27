@@ -1,9 +1,9 @@
 /**
  * Newtonsoft.Json Test library
- * @version 1.0.0-beta3
+ * @version 1.0.0-beta4
  * @author Object.NET, Inc.
  * @copyright Copyright 2008-2017 Object.NET, Inc.
- * @compiler Bridge.NET 16.0.0-beta3
+ * @compiler Bridge.NET 16.0.0-beta4
  */
 Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
     "use strict";
@@ -156,7 +156,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     Bridge.Test.NUnit.Assert.AreEqual(c.charField, jsonC.charField, "#4");
                     Bridge.Test.NUnit.Assert.AreEqual(c.longField.toString(), jsonC.longField.toString(), "#5");
                     Bridge.Test.NUnit.Assert.AreEqual(c.ulongField.toString(), jsonC.ulongField.toString(), "#6");
-                    Bridge.Test.NUnit.Assert.AreEqual(Bridge.Int.format(c.decimalField, "G"), Bridge.Int.format(jsonC.decimalField, "G"), "#7");
+                    Bridge.Test.NUnit.Assert.AreEqual(c.decimalField.toString(), jsonC.decimalField.toString(), "#7");
                     Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.format(c.dateField), System.DateTime.format(jsonC.dateField), "#8");
                     Bridge.Test.NUnit.Assert.AreEqual(c.enumField, jsonC.enumField, "#9");
                     Bridge.Test.NUnit.Assert.AreEqual(c.arrayField, jsonC.arrayField, "#10");
@@ -958,7 +958,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                 },
                 CharWorks: function () {
                     var c = 97;
-                    Bridge.Test.NUnit.Assert.AreEqual("\"a\"", Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.box(c, System.Char, $box_.System.Char.toString, $box_.System.Char.getHashCode)));
+                    Bridge.Test.NUnit.Assert.AreEqual("\"a\"", Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.box(c, System.Char, String.fromCharCode, System.Char.getHashCode)));
                 },
                 Int64Works: function () {
                     var value = System.Int64.MaxValue;
@@ -992,7 +992,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                 },
                 DateTimeWorks: function () {
                     var dt = new Date(2010, 6 - 1, 10, 12, 0, 0, 0);
-                    var s = Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.box(dt, System.DateTime, $box_.System.DateTime.toString));
+                    var s = Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.box(dt, System.DateTime, System.DateTime.format));
 
                     Bridge.Test.NUnit.Assert.AreEqual(JSON.stringify(dt), s, System.String.concat("Result: ", s));
                 },
@@ -1007,7 +1007,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     Bridge.Test.NUnit.Assert.AreEqual("[\"Item1\",\"Item2\",\"Item3\"]", Newtonsoft.Json.JsonConvert.SerializeObject(enumArr));
                 },
                 EnumWorks: function () {
-                    Bridge.Test.NUnit.Assert.AreEqual("\"Item1\"", Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.box(Newtonsoft.Json.Tests.SerializationTests.E1.Item1, Newtonsoft.Json.Tests.SerializationTests.E1, $box_.Newtonsoft.Json.Tests.SerializationTests.E1.toString)));
+                    Bridge.Test.NUnit.Assert.AreEqual("\"Item1\"", Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.box(Newtonsoft.Json.Tests.SerializationTests.E1.Item1, Newtonsoft.Json.Tests.SerializationTests.E1, System.Enum.toStringFn(Newtonsoft.Json.Tests.SerializationTests.E1))));
                 },
                 IListWorks: function () {
                     var list = $asm.$.Newtonsoft.Json.Tests.SerializationTests.f1(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.SerializationTests.E1))());
@@ -1217,12 +1217,12 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                 AssertIsDecimalAndEqualTo$1: function (v, d, message) {
                     if (message === void 0) { message = null; }
                     Bridge.Test.NUnit.Assert.AreStrictEqual(true, Bridge.is(v, System.Decimal), message);
-                    Bridge.Test.NUnit.Assert.AreStrictEqual(System.Double.format(d, "G"), v.toString(), message);
+                    Bridge.Test.NUnit.Assert.AreStrictEqual(System.Double.format(d), v.toString(), message);
                 },
                 AssertIsDecimalAndEqualTo: function (v, d, message) {
                     if (message === void 0) { message = null; }
                     Bridge.Test.NUnit.Assert.AreStrictEqual(true, Bridge.is(v, System.Decimal), message);
-                    Bridge.Test.NUnit.Assert.AreStrictEqual(Bridge.Int.format(d, "G"), v.toString(), message);
+                    Bridge.Test.NUnit.Assert.AreStrictEqual(d.toString(), v.toString(), message);
                 }
             }
         }
@@ -1268,26 +1268,5 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
             return System.String.format("{0} {1} {2} {3}", this.Id, this.Name, this.Address.Street, this.Address.City);
         }
     }
-    });
-
-    var $box_ = {};
-
-    Bridge.ns("System.Char", $box_);
-
-    Bridge.apply($box_.System.Char, {
-        toString: function (obj) { return String.fromCharCode(obj); },
-        getHashCode: function (obj) { return System.Char.getHashCode(obj); }
-    });
-
-    Bridge.ns("System.DateTime", $box_);
-
-    Bridge.apply($box_.System.DateTime, {
-        toString: function (obj) { return System.DateTime.format(obj); }
-    });
-
-    Bridge.ns("Newtonsoft.Json.Tests.SerializationTests.E1", $box_);
-
-    Bridge.apply($box_.Newtonsoft.Json.Tests.SerializationTests.E1, {
-        toString: function (obj) { return System.Enum.toString(Newtonsoft.Json.Tests.SerializationTests.E1, obj); }
     });
 });
