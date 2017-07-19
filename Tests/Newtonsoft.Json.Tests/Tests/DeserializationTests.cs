@@ -239,38 +239,63 @@ namespace Newtonsoft.Json.Tests
             Assert.True(decimal.Zero == JsonConvert.DeserializeObject<decimal>("0"));
         }
 
+
         [Test]
         public static void DateTimeWorks()
         {
-            var d1 = new DateTime(2010, 6, 10, 12, 1, 2, 3, DateTimeKind.Utc);
-            var json = JsonConvert.DeserializeObject<DateTime>("\"2010-06-10T12:01:02.003Z\"");
-            DateHelper.AssertDate(d1, json, "d1: ");
-
             var minDate = DateTime.MinValue;
-            json = JsonConvert.DeserializeObject<DateTime>("\"0001-01-01T00:00:00.000Z\"");
+            var json = JsonConvert.DeserializeObject<DateTime>("\"0001-01-01T00:00:00.000Z\"");
             DateHelper.AssertDate(minDate, DateTimeKind.Unspecified, json.Ticks, json.Year, json.Month, json.Day, json.Hour, json.Minute, json.Second, json.Millisecond, "MinValue: ");
 
+            var d1 = new DateTime(2010, 6, 10, 12, 1, 2, 3, DateTimeKind.Utc);
+            json = JsonConvert.DeserializeObject<DateTime>("\"2010-06-10T12:01:02.003Z\"");
+            DateHelper.AssertDate(d1, json, "d1: ");
+
+            var d2 = new DateTime(2010, 6, 10, 12, 0, 0, 0, DateTimeKind.Unspecified);
+            json = JsonConvert.DeserializeObject<DateTime>("\"2010-06-10T12:00:00\"");
+            DateHelper.AssertDate(d2, json, "d2: ");
+
+            var d3 = new DateTime(2010, 6, 10, 12, 0, 0, 0, DateTimeKind.Utc);
+            json = JsonConvert.DeserializeObject<DateTime>("\"2010-06-10T12:00:00Z\"");
+            DateHelper.AssertDate(d3, json, "d3: ");
+
+            // DST problem
+            //var s = "\"2010-06-10T12:00:00" + DateHelper.GetOffsetString() + "\"";
+            //// This a .Net passing d4
+            ////var d4 = (new DateTime(2010, 6, 10, 12, 0, 0, 0, DateTimeKind.Utc)).AddMinutes(-DateHelper.GetOffsetMinutes()).ToLocalTime();
+            //var d4 = (new DateTime(2010, 6, 10, 12, 0, 0, 0, s.Contains("Z") ? DateTimeKind.Utc :  DateTimeKind.Local));
+
+            //Assert.True(true, "d4 input: " + s);
+            //Assert.True(true, "d4 expected: " + d4.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'FFFFFFFK"));
+
+            //json = JsonConvert.DeserializeObject<DateTime>(s);
+            //DateHelper.AssertDate(d4, json, "d4: ");
+        }
+
+        [Test]
+        public static void DateTimeSerializationDeserializationTurnaroundWorks()
+        {
             var d2 = new DateTime(1700, 2, 28, 12, 3, 4, 5, DateTimeKind.Local);
             var s2 = d2.ToString();
-            var s2Utc = "\"" + d2.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'") + "\"";
+            var s2Utc = "\"" + d2.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'FFFFFFFK") + "\"";
 
             var serialized2 = JsonConvert.SerializeObject(d2);
             Assert.AreEqual(s2Utc, serialized2, "d2 serialized string");
 
-            json = JsonConvert.DeserializeObject<DateTime>(serialized2);
-            DateHelper.AssertDate(json, DateTimeKind.Utc, d2.Ticks, d2.Year, d2.Month, d2.Day, d2.Hour, d2.Minute, d2.Second, d2.Millisecond, "d2 deserialized date: ");
+            var json = JsonConvert.DeserializeObject<DateTime>(serialized2);
+            DateHelper.AssertDate(json, DateTimeKind.Local, d2.Ticks, d2.Year, d2.Month, d2.Day, d2.Hour, d2.Minute, d2.Second, d2.Millisecond, "d2 deserialized date: ");
 
             Assert.AreEqual(s2, json.ToString(), "d2 deserialized string: ");
 
             var d3 = new DateTime(2017, 1, 8, 13, 3, 4, 5, DateTimeKind.Unspecified);
             var s3 = d3.ToString();
-            var s3Utc = "\"" + d3.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'") + "\"";
+            var s3Utc = "\"" + d3.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'FFFFFFFK") + "\"";
 
             var serialized3 = JsonConvert.SerializeObject(d3);
             Assert.AreEqual(s3Utc, serialized3, "d3 serialized string");
 
             json = JsonConvert.DeserializeObject<DateTime>(serialized3);
-            DateHelper.AssertDate(json, DateTimeKind.Utc, d3.Ticks, d3.Year, d3.Month, d3.Day, d3.Hour, d3.Minute, d3.Second, d3.Millisecond, "d3 deserialized date: ");
+            DateHelper.AssertDate(json, DateTimeKind.Unspecified, d3.Ticks, d3.Year, d3.Month, d3.Day, d3.Hour, d3.Minute, d3.Second, d3.Millisecond, "d3 deserialized date: ");
 
             Assert.AreEqual(s3, json.ToString(), "d3 deserialized string: ");
         }
@@ -366,6 +391,17 @@ namespace Newtonsoft.Json.Tests
             Assert.AreEqual(c.longField.ToString(), jsonC.longField.ToString(), "#5");
             Assert.AreEqual(c.ulongField.ToString(), jsonC.ulongField.ToString(), "#6");
             Assert.AreEqual(c.decimalField.ToString(), jsonC.decimalField.ToString(), "#7");
+
+            Console.WriteLine(json);
+            Console.WriteLine(c.dateField);
+            Console.WriteLine(c.dateField.ToString());
+            Console.WriteLine(c.dateField.ToString("O"));
+
+            Console.WriteLine(jsonC);
+            Console.WriteLine(jsonC.dateField);
+            Console.WriteLine(jsonC.dateField.ToString());
+            Console.WriteLine(jsonC.dateField.ToString("O"));
+
             Assert.AreEqual(c.dateField.ToString(), jsonC.dateField.ToString(), "#8");
             Assert.AreEqual(c.enumField, jsonC.enumField, "#9");
             Assert.AreEqual(c.arrayField, jsonC.arrayField, "#10");
