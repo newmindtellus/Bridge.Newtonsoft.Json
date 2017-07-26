@@ -191,7 +191,7 @@ namespace Newtonsoft.Json.Tests
             Assert.AreEqual("[1,2,3]", JsonConvert.SerializeObject(longArr));
 
             E1[] enumArr = new[] { E1.Item1, E1.Item2, E1.Item3 };
-            Assert.AreEqual("[\"Item1\",\"Item2\",\"Item3\"]", JsonConvert.SerializeObject(enumArr));
+            Assert.AreEqual("[0,1,2]", JsonConvert.SerializeObject(enumArr));
         }
 
         [Test]
@@ -204,7 +204,7 @@ namespace Newtonsoft.Json.Tests
         public static void IListWorks()
         {
             var list = new List<E1> { E1.Item1, E1.Item2, E1.Item3 };
-            Assert.AreEqual("[\"Item1\",\"Item2\",\"Item3\"]", JsonConvert.SerializeObject(list));
+            Assert.AreEqual("[0,1,2]", JsonConvert.SerializeObject(list));
         }
 
         [Test]
@@ -217,7 +217,7 @@ namespace Newtonsoft.Json.Tests
                 ["i3"] = E1.Item3
             };
 
-            Assert.AreEqual("{\"i1\":\"Item1\",\"i2\":\"Item2\",\"i3\":\"Item3\"}", JsonConvert.SerializeObject(dict));
+            Assert.AreEqual("{\"i1\":0,\"i2\":1,\"i3\":2}", JsonConvert.SerializeObject(dict));
         }
 
         [Test]
@@ -239,10 +239,10 @@ namespace Newtonsoft.Json.Tests
             dynamic rawDateField = null;
             //@ rawDateField = System.DateTime.format(c.dateField, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'FFFFFFFK");
             Assert.AreEqual(rawDateField, raw.dateField, "#9 " + raw.dateField);
-            Assert.AreEqual("Item1", raw.enumField, "#10");
+            Assert.AreEqual(0, raw.enumField, "#10");
             Assert.AreEqual(new int[] { 1, 2, 3 }, raw.arrayField, "#11");
-            Assert.AreEqual(new string[] { "Item1", "Item2", "Item3" }, raw.listField, "#12");
-            Assert.AreDeepEqual(Script.ToPlainObject(new { i1 = "Item1", i2 = "Item2", i3 = "Item3" }), raw.dictField, "#12");
+            Assert.AreEqual(new int[] { 0, 1, 2 }, raw.listField, "#12");
+            Assert.AreDeepEqual(Script.ToPlainObject(new { i1 = 0, i2 = 1, i3 = 2 }), raw.dictField, "#13");
         }
 
         [Test]
@@ -273,7 +273,7 @@ namespace Newtonsoft.Json.Tests
             };
 
             string json = JsonConvert.SerializeObject(c);
-            Assert.AreEqual("{\"Sub1\":{\"List1\":[\"Item1\",\"Item2\",\"Item3\"]},\"Sub2\":{\"List1\":[\"a\",\"b\",\"c\"]}}", json);
+            Assert.AreEqual("{\"Sub1\":{\"List1\":[0,1,2]},\"Sub2\":{\"List1\":[\"a\",\"b\",\"c\"]}}", json);
         }
 
         [Test]
