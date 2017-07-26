@@ -853,6 +853,43 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
         }
     });
 
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case22", {
+        statics: {
+            methods: {
+                TestEnumJson: function () {
+                    var obj = new Newtonsoft.Json.Tests.Issues.Case22.TestObj();
+                    obj.A = 123;
+                    obj.B = Newtonsoft.Json.Tests.Issues.Case22.TestEnum.Test3;
+
+                    var json = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+                    Bridge.Test.NUnit.Assert.AreEqual("{\"A\":123,\"B\":2}", json);
+
+                    obj = Newtonsoft.Json.JsonConvert.DeserializeObject(json, Newtonsoft.Json.Tests.Issues.Case22.TestObj);
+                    Bridge.Test.NUnit.Assert.AreEqual(123, obj.A);
+                    Bridge.Test.NUnit.Assert.AreEqual(Newtonsoft.Json.Tests.Issues.Case22.TestEnum.Test3, obj.B);
+                }
+            }
+        }
+    });
+
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case22.TestEnum", {
+        $kind: "enum",
+        statics: {
+            fields: {
+                Test1: 0,
+                Test2: 1,
+                Test3: 2
+            }
+        }
+    });
+
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case22.TestObj", {
+        props: {
+            A: 0,
+            B: 0
+        }
+    });
+
     Bridge.define("Newtonsoft.Json.Tests.Issues.Case4", {
         statics: {
             methods: {
@@ -1148,19 +1185,19 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     Bridge.Test.NUnit.Assert.AreEqual("[1,2,3]", Newtonsoft.Json.JsonConvert.SerializeObject(longArr));
 
                     var enumArr = System.Array.init([Newtonsoft.Json.Tests.SerializationTests.E1.Item1, Newtonsoft.Json.Tests.SerializationTests.E1.Item2, Newtonsoft.Json.Tests.SerializationTests.E1.Item3], Newtonsoft.Json.Tests.SerializationTests.E1);
-                    Bridge.Test.NUnit.Assert.AreEqual("[\"Item1\",\"Item2\",\"Item3\"]", Newtonsoft.Json.JsonConvert.SerializeObject(enumArr));
+                    Bridge.Test.NUnit.Assert.AreEqual("[0,1,2]", Newtonsoft.Json.JsonConvert.SerializeObject(enumArr));
                 },
                 EnumWorks: function () {
                     Bridge.Test.NUnit.Assert.AreEqual("\"Item1\"", Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.box(Newtonsoft.Json.Tests.SerializationTests.E1.Item1, Newtonsoft.Json.Tests.SerializationTests.E1, System.Enum.toStringFn(Newtonsoft.Json.Tests.SerializationTests.E1))));
                 },
                 IListWorks: function () {
                     var list = $asm.$.Newtonsoft.Json.Tests.SerializationTests.f1(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.SerializationTests.E1))());
-                    Bridge.Test.NUnit.Assert.AreEqual("[\"Item1\",\"Item2\",\"Item3\"]", Newtonsoft.Json.JsonConvert.SerializeObject(list));
+                    Bridge.Test.NUnit.Assert.AreEqual("[0,1,2]", Newtonsoft.Json.JsonConvert.SerializeObject(list));
                 },
                 IDictionaryWorks: function () {
                     var dict = $asm.$.Newtonsoft.Json.Tests.SerializationTests.f2(new (System.Collections.Generic.Dictionary$2(System.String,Newtonsoft.Json.Tests.SerializationTests.E1))());
 
-                    Bridge.Test.NUnit.Assert.AreEqual("{\"i1\":\"Item1\",\"i2\":\"Item2\",\"i3\":\"Item3\"}", Newtonsoft.Json.JsonConvert.SerializeObject(dict));
+                    Bridge.Test.NUnit.Assert.AreEqual("{\"i1\":0,\"i2\":1,\"i3\":2}", Newtonsoft.Json.JsonConvert.SerializeObject(dict));
                 },
                 TypeWithFieldWorks: function () {
                     var c = new Newtonsoft.Json.Tests.SerializationTests.ClassWithFields();
@@ -1179,10 +1216,10 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     var rawDateField = null;
                     rawDateField = System.DateTime.format(c.dateField, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'FFFFFFFK");
                     Bridge.Test.NUnit.Assert.AreEqual(rawDateField, raw.dateField, System.String.concat("#9 ", raw.dateField));
-                    Bridge.Test.NUnit.Assert.AreEqual("Item1", raw.enumField, "#10");
+                    Bridge.Test.NUnit.Assert.AreEqual(0, raw.enumField, "#10");
                     Bridge.Test.NUnit.Assert.AreEqual(System.Array.init([1, 2, 3], System.Int32), raw.arrayField, "#11");
-                    Bridge.Test.NUnit.Assert.AreEqual(System.Array.init(["Item1", "Item2", "Item3"], System.String), raw.listField, "#12");
-                    Bridge.Test.NUnit.Assert.AreDeepEqual({ i1: "Item1", i2: "Item2", i3: "Item3" }, raw.dictField, "#12");
+                    Bridge.Test.NUnit.Assert.AreEqual(System.Array.init([0, 1, 2], System.Int32), raw.listField, "#12");
+                    Bridge.Test.NUnit.Assert.AreDeepEqual({ i1: 0, i2: 1, i3: 2 }, raw.dictField, "#13");
                 },
                 ComplexPropertiesWorks: function () {
                     var $t;
@@ -1193,7 +1230,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     c.Sub2 = ($t = new Newtonsoft.Json.Tests.SerializationTests.SubClass2(), $t.Owner = c, $t.List1 = $asm.$.Newtonsoft.Json.Tests.SerializationTests.f4(new (System.Collections.Generic.List$1(System.Char))()), $t);
 
                     var json = Newtonsoft.Json.JsonConvert.SerializeObject(c);
-                    Bridge.Test.NUnit.Assert.AreEqual("{\"Sub1\":{\"List1\":[\"Item1\",\"Item2\",\"Item3\"]},\"Sub2\":{\"List1\":[\"a\",\"b\",\"c\"]}}", json);
+                    Bridge.Test.NUnit.Assert.AreEqual("{\"Sub1\":{\"List1\":[0,1,2]},\"Sub2\":{\"List1\":[\"a\",\"b\",\"c\"]}}", json);
                 },
                 CamelCaseSettingWorks: function () {
                     var $t;
