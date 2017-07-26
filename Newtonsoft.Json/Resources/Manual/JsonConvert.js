@@ -340,6 +340,10 @@
 
                     var def = Bridge.getDefaultValue(type);
 
+                    if (type.$nullable) {
+                        type = type.$nullableType;
+                    }
+
                     if (raw === null) {
                         return def;
                     } else if (raw === false) {
