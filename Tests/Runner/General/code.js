@@ -800,6 +800,59 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
         }
     }; });
 
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case18", {
+        statics: {
+            methods: {
+                TestNullable: function () {
+                    var $t;
+                    var testClass = ($t = new Newtonsoft.Json.Tests.Issues.Case18.Test(), $t.A = true, $t.B = true, $t.I1 = 5, $t.I2 = 6, $t.E1 = Newtonsoft.Json.Tests.Issues.Case18.Enum1.Item2, $t.E2 = Newtonsoft.Json.Tests.Issues.Case18.Enum1.Item1, $t);
+
+                    var testJson = Newtonsoft.Json.JsonConvert.SerializeObject(testClass);
+                    var test = Newtonsoft.Json.JsonConvert.DeserializeObject(testJson, Newtonsoft.Json.Tests.Issues.Case18.Test);
+
+                    Bridge.Test.NUnit.Assert.NotNull(test.A);
+                    Bridge.Test.NUnit.Assert.True(System.Nullable.getValue(test.A));
+                    Bridge.Test.NUnit.Assert.True(test.B);
+                    Bridge.Test.NUnit.Assert.Null(test.C);
+
+                    Bridge.Test.NUnit.Assert.NotNull(test.I1);
+                    Bridge.Test.NUnit.Assert.AreEqual(5, System.Nullable.getValue(test.I1));
+                    Bridge.Test.NUnit.Assert.AreEqual(6, test.I2);
+                    Bridge.Test.NUnit.Assert.Null(test.I3);
+
+                    Bridge.Test.NUnit.Assert.NotNull(test.E1);
+                    Bridge.Test.NUnit.Assert.AreEqual(Newtonsoft.Json.Tests.Issues.Case18.Enum1.Item2, System.Nullable.getValue(test.E1));
+                    Bridge.Test.NUnit.Assert.AreEqual(Newtonsoft.Json.Tests.Issues.Case18.Enum1.Item1, test.E2);
+                    Bridge.Test.NUnit.Assert.Null(test.E3);
+                }
+            }
+        }
+    });
+
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case18.Enum1", {
+        $kind: "enum",
+        statics: {
+            fields: {
+                Item1: 0,
+                Item2: 1
+            }
+        }
+    });
+
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case18.Test", {
+        props: {
+            A: null,
+            B: false,
+            C: null,
+            I1: null,
+            I2: 0,
+            I3: null,
+            E1: null,
+            E2: 0,
+            E3: null
+        }
+    });
+
     Bridge.define("Newtonsoft.Json.Tests.Issues.Case4", {
         statics: {
             methods: {
