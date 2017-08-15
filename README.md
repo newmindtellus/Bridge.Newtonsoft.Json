@@ -1,4 +1,4 @@
-![bridge-newtonsoft](https://user-images.githubusercontent.com/62210/27410384-649e0abe-56a4-11e7-8af3-91f8dbc9e756.png)
+<p align="center"><img src="https://user-images.githubusercontent.com/62210/29321053-746e3d0c-8196-11e7-99d2-94d6dc8afdfe.png" /></p>
 
 The **Bridge.Newtonsoft.Json** package provides [Bridge.NET](http://bridge.net/) support for a limited subset of the [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) API. See it working on [Deck.NET](https://deck.net/newtonsoft.json).
 
