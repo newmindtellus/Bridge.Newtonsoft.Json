@@ -6,7 +6,7 @@ The **Bridge.Newtonsoft.Json** package provides [Bridge.NET](http://bridge.net/)
 [![Build Status](https://travis-ci.org/bridgedotnet/Bridge.Newtonsoft.Json.svg?branch=master)](https://travis-ci.org/bridgedotnet/Bridge.Newtonsoft.Json)
 [![NuGet Status](https://img.shields.io/nuget/v/Bridge.Newtonsoft.Json.svg)](https://www.nuget.org/packages/Bridge.Newtonsoft.Json)
 
-**IMPORTANT:** Only the features listed below are supported.
+> **IMPORTANT:** Only the features listed below are supported.
 
 ## Installation
 
