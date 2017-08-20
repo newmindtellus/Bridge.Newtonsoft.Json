@@ -1,12 +1,132 @@
 /**
  * Newtonsoft.Json Test library
- * @version 1.0.0
+ * @version 1.1.0
  * @author Object.NET, Inc.
  * @copyright Copyright 2008-2017 Object.NET, Inc.
- * @compiler Bridge.NET 16.0.0
+ * @compiler Bridge.NET 16.1.0
  */
 Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
     "use strict";
+
+    Bridge.define("Demo25.ApiResponse$1", function (T) { return {
+        props: {
+            ResultIfSuccessful: Bridge.getDefaultValue(T)
+        },
+        ctors: {
+            ctor: function (resultIfSuccessful) {
+                this.$initialize();
+                this.ResultIfSuccessful = resultIfSuccessful;
+            }
+        }
+    }; });
+
+    Bridge.define("Demo25.Danny", {
+        props: {
+            ToolboxControls: null
+        }
+    });
+
+    Bridge.define("Demo25.KeyValuePairDataModel");
+
+    Bridge.define("Demo25.NonNullList$1", function (T) { return {
+        inherits: [System.Collections.Generic.IEnumerable$1(T)],
+        fields: {
+            _headIfAny: null
+        },
+        props: {
+            Count: {
+                get: function () {
+                    return (this._headIfAny == null) ? 0 : ((this._headIfAny.Count) >>> 0);
+                }
+            }
+        },
+        alias: ["getEnumerator", ["System$Collections$Generic$IEnumerable$1$" + Bridge.getTypeAlias(T) + "$getEnumerator", "System$Collections$Generic$IEnumerable$1$getEnumerator"]],
+        ctors: {
+            ctor: function (headIfAny) {
+                this.$initialize();
+                this._headIfAny = headIfAny;
+            },
+            $ctor1: function (values) {
+                this.$initialize();                var $t, $t1;
+
+                var node = null;
+                $t = Bridge.getEnumerator(System.Linq.Enumerable.from(values).reverse());
+                try {
+                    while ($t.moveNext()) {
+                        var value = $t.Current;
+                        node = ($t1 = new (Demo25.NonNullList$1.Node(T))(), $t1.Count = ((((node == null) ? 0 : node.Count) + 1) | 0), $t1.Item = value, $t1.NextIfAny = node, $t1);
+                    }
+                } finally {
+                    if (Bridge.is($t, System.IDisposable)) {
+                        $t.System$IDisposable$dispose();
+                    }
+                }this._headIfAny = node;
+        }
+    },
+    methods: {
+        getEnumerator: function () {
+            var $step = 0,
+                $jumpFromFinally,
+                $returnValue,
+                node,
+                $async_e;
+
+            var $enumerator = new (Bridge.GeneratorEnumerator$1(T))(Bridge.fn.bind(this, function () {
+                try {
+                    for (;;) {
+                        switch ($step) {
+                            case 0: {
+                                node = this._headIfAny;
+                                $step = 1;
+                                continue;
+                            }
+                            case 1: {
+                                if ( node != null ) {
+                                        $step = 2;
+                                        continue;
+                                    } 
+                                    $step = 4;
+                                    continue;
+                            }
+                            case 2: {
+                                $enumerator.current = node.Item;
+                                    $step = 3;
+                                    return true;
+                            }
+                            case 3: {
+                                node = node.NextIfAny;
+
+                                    $step = 1;
+                                    continue;
+                            }
+                            case 4: {
+
+                            }
+                            default: {
+                                return false;
+                            }
+                        }
+                    }
+                } catch($async_e1) {
+                    $async_e = System.Exception.create($async_e1);
+                    throw $async_e;
+                }
+            }));
+            return $enumerator;
+        },
+        System$Collections$IEnumerable$getEnumerator: function () {
+            return this.getEnumerator();
+        }
+    }
+    }; });
+
+    Bridge.define("Demo25.NonNullList$1.Node", function (T) { return {
+        fields: {
+            Count: 0,
+            Item: Bridge.getDefaultValue(T),
+            NextIfAny: null
+        }
+    }; });
 
     Bridge.define("Newtonsoft.Json.Tests.Case2", {
         statics: {
@@ -401,7 +521,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
         },
         statics : {
             methods: {
-                $metadata : function () { return {"m":[{"a":2,"n":"Amount","t":16,"rt":System.Int32,"g":{"a":2,"n":"get_Amount","t":8,"rt":System.Int32,"fg":"Amount"},"fn":"Amount"},{"a":2,"n":"Message","t":16,"rt":System.String,"g":{"a":2,"n":"get_Message","t":8,"rt":System.String,"fg":"Message"},"fn":"Message"}]}; }
+                $metadata : function () { return {"m":[{"a":2,"n":"Amount","t":16,"rt":System.Int32,"g":{"a":2,"n":"get_Amount","t":8,"rt":System.Int32,"fg":"Amount","box":function ($v) { return Bridge.box($v, System.Int32);}},"fn":"Amount"},{"a":2,"n":"Message","t":16,"rt":System.String,"g":{"a":2,"n":"get_Message","t":8,"rt":System.String,"fg":"Message"},"fn":"Message"}]}; }
             }
         }
     });
@@ -890,6 +1010,110 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
         }
     });
 
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case25", {
+        statics: {
+            methods: {
+                TestSerializerSettings: function () {
+                    var $t;
+                    var s = ($t = new Newtonsoft.Json.JsonSerializerSettings(), $t.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Objects, $t);
+
+                    var json1 = "{    \"$type\": \"Demo25.ApiResponse`1[[Demo25.NonNullList`1[[Demo25.KeyValuePairDataModel, Newtonsoft.Json.Tests]], Newtonsoft.Json.Tests]], Newtonsoft.Json.Tests\",    \"ResultIfSuccessful\": []}";
+                    var json2 = "{       \"ToolboxControls\": [        {            \"$type\": \"System.String\",            \"Text\": \"Placeholder header\"        }    ]}";
+
+                    Newtonsoft.Json.JsonConvert.DeserializeObject(json1, Demo25.ApiResponse$1(Demo25.NonNullList$1(Demo25.KeyValuePairDataModel)), s);
+                    var a = Newtonsoft.Json.JsonConvert.DeserializeObject(json2, Demo25.Danny, s);
+                    Bridge.Test.NUnit.Assert.AreEqual(1, a.ToolboxControls.Count);
+                }
+            }
+        }
+    });
+
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case26", {
+        statics: {
+            methods: {
+                TestInvalidJson: function () {
+                    Bridge.Test.NUnit.Assert.Throws$2(Newtonsoft.Json.JsonException, $asm.$.Newtonsoft.Json.Tests.Issues.Case26.f1);
+
+                    Bridge.Test.NUnit.Assert.Throws$2(Newtonsoft.Json.JsonException, $asm.$.Newtonsoft.Json.Tests.Issues.Case26.f2);
+
+                    Bridge.Test.NUnit.Assert.AreEqual(0, Newtonsoft.Json.JsonConvert.DeserializeObject("0", System.Int32));
+                }
+            }
+        }
+    });
+
+    Bridge.ns("Newtonsoft.Json.Tests.Issues.Case26", $asm.$);
+
+    Bridge.apply($asm.$.Newtonsoft.Json.Tests.Issues.Case26, {
+        f1: function () {
+            var product = Newtonsoft.Json.JsonConvert.DeserializeObject("fiherifuer", Newtonsoft.Json.Tests.Issues.Case26.Product);
+        },
+        f2: function () {
+            var product = Newtonsoft.Json.JsonConvert.DeserializeObject("{Name:\"name\"", Newtonsoft.Json.Tests.Issues.Case26.Product);
+        }
+    });
+
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case26.Product", {
+        props: {
+            Name: null,
+            ExpiryDate: null,
+            Price: 0,
+            Sizes: null
+        },
+        ctors: {
+            init: function () {
+                this.ExpiryDate = System.DateTime.getDefaultValue();
+            }
+        }
+    });
+
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case27", {
+        statics: {
+            methods: {
+                TestValueTypeProperty: function () {
+                    var product = new Newtonsoft.Json.Tests.Issues.Case27.Product1();
+
+                    product.Name = "Apple";
+                    product.Price = 3.99;
+
+                    var json = Newtonsoft.Json.JsonConvert.SerializeObject(product);
+                    Bridge.Test.NUnit.Assert.AreEqual("{\"Name\":\"Apple\",\"Price\":3.99}", json);
+
+                    product = Newtonsoft.Json.JsonConvert.DeserializeObject(json, Newtonsoft.Json.Tests.Issues.Case27.Product1);
+                    Bridge.Test.NUnit.Assert.AreEqual("Apple", product.Name);
+                    Bridge.Test.NUnit.Assert.AreEqual(3.99, product.Price);
+                },
+                TestValueTypeField: function () {
+                    var product = new Newtonsoft.Json.Tests.Issues.Case27.Product2();
+
+                    product.Name = "Apple";
+                    product.Price = 4;
+
+                    var json = Newtonsoft.Json.JsonConvert.SerializeObject(product);
+                    Bridge.Test.NUnit.Assert.AreEqual("{\"Name\":\"Apple\",\"Price\":4}", json);
+
+                    product = Newtonsoft.Json.JsonConvert.DeserializeObject(json, Newtonsoft.Json.Tests.Issues.Case27.Product2);
+                    Bridge.Test.NUnit.Assert.AreEqual("Apple", product.Name);
+                    Bridge.Test.NUnit.Assert.AreEqual(4, product.Price);
+                }
+            }
+        }
+    });
+
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case27.Product1", {
+        props: {
+            Name: null,
+            Price: 0
+        }
+    });
+
+    Bridge.define("Newtonsoft.Json.Tests.Issues.Case27.Product2", {
+        fields: {
+            Name: null,
+            Price: 0
+        }
+    });
+
     Bridge.define("Newtonsoft.Json.Tests.Issues.Case4", {
         statics: {
             methods: {
@@ -1188,7 +1412,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     Bridge.Test.NUnit.Assert.AreEqual("[0,1,2]", Newtonsoft.Json.JsonConvert.SerializeObject(enumArr));
                 },
                 EnumWorks: function () {
-                    Bridge.Test.NUnit.Assert.AreEqual("\"Item1\"", Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.box(Newtonsoft.Json.Tests.SerializationTests.E1.Item1, Newtonsoft.Json.Tests.SerializationTests.E1, System.Enum.toStringFn(Newtonsoft.Json.Tests.SerializationTests.E1))));
+                    Bridge.Test.NUnit.Assert.AreEqual("0", Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.box(Newtonsoft.Json.Tests.SerializationTests.E1.Item1, Newtonsoft.Json.Tests.SerializationTests.E1, System.Enum.toStringFn(Newtonsoft.Json.Tests.SerializationTests.E1))));
                 },
                 IListWorks: function () {
                     var list = $asm.$.Newtonsoft.Json.Tests.SerializationTests.f1(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.SerializationTests.E1))());
