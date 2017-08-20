@@ -1,5 +1,5 @@
 /**
- * @compiler Bridge.NET 16.0.0
+ * @compiler Bridge.NET 16.1.0
  */
 Bridge.assembly("Bridge.Test.Newtonsoft.Json.Tests", function ($asm, globals) {
     
@@ -28,14 +28,13 @@ Bridge.assembly("Bridge.Test.Newtonsoft.Json.Tests", function ($asm, globals) {
                         return;
                     }
 
-                    assert[System.Array.index(Bridge.Test.Runtime.ContextHelper.contextName, assert)] = ctx;
+                    assert[Bridge.Test.Runtime.ContextHelper.contextName] = ctx;
                 },
                 GetTestId: function (details) {
                     return Bridge.as(details.testId, System.String);
                 },
                 GetAssert: function () {
-                    var $t;
-                    var a = Bridge.unbox(($t = QUnit.config.current).assert);
+                    var a = Bridge.unbox(QUnit.config.current.assert);
 
                     return a;
                 },
@@ -44,7 +43,7 @@ Bridge.assembly("Bridge.Test.Newtonsoft.Json.Tests", function ($asm, globals) {
                         return null;
                     }
 
-                    return Bridge.as(assert[System.Array.index(Bridge.Test.Runtime.ContextHelper.contextName, assert)], Bridge.Test.Runtime.Context);
+                    return Bridge.as(assert[Bridge.Test.Runtime.ContextHelper.contextName], Bridge.Test.Runtime.Context);
                 },
                 GetContext: function () {
                     return Bridge.Test.Runtime.ContextHelper.GetContext$1(Bridge.Test.Runtime.ContextHelper.GetAssert());
@@ -67,7 +66,7 @@ Bridge.assembly("Bridge.Test.Newtonsoft.Json.Tests", function ($asm, globals) {
                         return null;
                     }
 
-                    return source[System.Array.index(0, source)];
+                    return source[0];
                 },
                 AdjustSourceElement: function (ctx, testItem) {
                     var $t;
@@ -136,7 +135,7 @@ Bridge.assembly("Bridge.Test.Newtonsoft.Json.Tests", function ($asm, globals) {
 
                         var els = testItem.getElementsByTagName("ol");
                         if (els != null && els.length > 0) {
-                            assertList = els[System.Array.index(0, els)];
+                            assertList = els[0];
                         }
 
                         var testTitle = testItem.firstChild;
@@ -167,7 +166,7 @@ Bridge.assembly("Bridge.Test.Newtonsoft.Json.Tests", function ($asm, globals) {
                         return null;
                     }
 
-                    return source[System.Array.index(0, source)];
+                    return source[0];
                 },
                 GetTestSource$1: function (testId) {
                     var output = Bridge.Test.Runtime.ContextHelper.GetTestOutput(testId);
