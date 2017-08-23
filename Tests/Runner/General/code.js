@@ -1,6 +1,6 @@
 /**
  * Newtonsoft.Json Test library
- * @version 1.1.0
+ * @version 1.1.1
  * @author Object.NET, Inc.
  * @copyright Copyright 2008-2017 Object.NET, Inc.
  * @compiler Bridge.NET 16.2.0
