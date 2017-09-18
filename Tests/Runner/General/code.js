@@ -3,7 +3,7 @@
  * @version 1.2.0
  * @author Object.NET, Inc.
  * @copyright Copyright 2008-2017 Object.NET, Inc.
- * @compiler Bridge.NET 16.2.0
+ * @compiler Bridge.NET 16.3.1
  */
 Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
     "use strict";
@@ -47,8 +47,8 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                 this._headIfAny = headIfAny;
             },
             $ctor1: function (values) {
-                this.$initialize();                var $t, $t1;
-
+                var $t, $t1;
+                this.$initialize();
                 var node = null;
                 $t = Bridge.getEnumerator(System.Linq.Enumerable.from(values).reverse());
                 try {
@@ -61,63 +61,63 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                         $t.System$IDisposable$dispose();
                     }
                 }this._headIfAny = node;
-        }
-    },
-    methods: {
-        getEnumerator: function () {
-            var $step = 0,
-                $jumpFromFinally,
-                $returnValue,
-                node,
-                $async_e;
+            }
+        },
+        methods: {
+            getEnumerator: function () {
+                var $step = 0,
+                    $jumpFromFinally,
+                    $returnValue,
+                    node,
+                    $async_e;
 
-            var $enumerator = new (Bridge.GeneratorEnumerator$1(T))(Bridge.fn.bind(this, function () {
-                try {
-                    for (;;) {
-                        switch ($step) {
-                            case 0: {
-                                node = this._headIfAny;
-                                $step = 1;
-                                continue;
-                            }
-                            case 1: {
-                                if ( node != null ) {
-                                        $step = 2;
-                                        continue;
-                                    } 
-                                    $step = 4;
-                                    continue;
-                            }
-                            case 2: {
-                                $enumerator.current = node.Item;
-                                    $step = 3;
-                                    return true;
-                            }
-                            case 3: {
-                                node = node.NextIfAny;
-
+                var $enumerator = new (Bridge.GeneratorEnumerator$1(T))(Bridge.fn.bind(this, function () {
+                    try {
+                        for (;;) {
+                            switch ($step) {
+                                case 0: {
+                                    node = this._headIfAny;
                                     $step = 1;
                                     continue;
-                            }
-                            case 4: {
+                                }
+                                case 1: {
+                                    if ( node != null ) {
+                                            $step = 2;
+                                            continue;
+                                        } 
+                                        $step = 4;
+                                        continue;
+                                }
+                                case 2: {
+                                    $enumerator.current = node.Item;
+                                        $step = 3;
+                                        return true;
+                                }
+                                case 3: {
+                                    node = node.NextIfAny;
 
-                            }
-                            default: {
-                                return false;
+                                        $step = 1;
+                                        continue;
+                                }
+                                case 4: {
+
+                                }
+                                default: {
+                                    return false;
+                                }
                             }
                         }
+                    } catch($async_e1) {
+                        $async_e = System.Exception.create($async_e1);
+                        throw $async_e;
                     }
-                } catch($async_e1) {
-                    $async_e = System.Exception.create($async_e1);
-                    throw $async_e;
-                }
-            }));
-            return $enumerator;
-        },
-        System$Collections$IEnumerable$getEnumerator: function () {
-            return this.getEnumerator();
+                }));
+                return $enumerator;
+            },
+            System$Collections$IEnumerable$getEnumerator: function () {
+                return this.getEnumerator();
+            }
         }
-    }
     }; });
 
     Bridge.define("Demo25.NonNullList$1.Node", function (T) { return {
@@ -293,7 +293,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     Bridge.Test.NUnit.Assert.AreEqual(Newtonsoft.Json.Tests.DeserializationTests.E1.Item1, Newtonsoft.Json.JsonConvert.DeserializeObject("\"Item1\"", Newtonsoft.Json.Tests.DeserializationTests.E1));
                 },
                 IListWorks: function () {
-                    var list = $asm.$.Newtonsoft.Json.Tests.DeserializationTests.f1(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.DeserializationTests.E1))());
+                    var list = $asm.$.Newtonsoft.Json.Tests.DeserializationTests.f1(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.DeserializationTests.E1)).ctor());
                     var jsonList = Newtonsoft.Json.JsonConvert.DeserializeObject("[\"Item1\",\"Item2\",\"Item3\"]", System.Collections.Generic.List$1(Newtonsoft.Json.Tests.DeserializationTests.E1));
                     Bridge.Test.NUnit.Assert.AreEqual(list.Count, jsonList.Count);
                     Bridge.Test.NUnit.Assert.True(list.getItem(0) === jsonList.getItem(0));
@@ -357,19 +357,19 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     var $t;
                     var c = new Newtonsoft.Json.Tests.DeserializationTests.Class1();
 
-                    c.Sub1 = ($t = new Newtonsoft.Json.Tests.DeserializationTests.SubClass1(), $t.Owner = c, $t.List1 = function (_o5) {
-                            _o5.add(item1);
-                            _o5.add(item2);
-                            _o5.add(item3);
-                            return _o5;
-                        }(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.DeserializationTests.E1))()), $t);
+                    c.Sub1 = ($t = new Newtonsoft.Json.Tests.DeserializationTests.SubClass1(), $t.Owner = c, $t.List1 = function (_o1) {
+                            _o1.add(item1);
+                            _o1.add(item2);
+                            _o1.add(item3);
+                            return _o1;
+                        }(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.DeserializationTests.E1)).ctor()), $t);
 
-                    c.Sub2 = ($t = new Newtonsoft.Json.Tests.DeserializationTests.SubClass2(), $t.Owner = c, $t.List1 = function (_o6) {
-                            _o6.add(l1);
-                            _o6.add(l2);
-                            _o6.add(l3);
-                            return _o6;
-                        }(new (System.Collections.Generic.List$1(System.Char))()), $t);
+                    c.Sub2 = ($t = new Newtonsoft.Json.Tests.DeserializationTests.SubClass2(), $t.Owner = c, $t.List1 = function (_o2) {
+                            _o2.add(l1);
+                            _o2.add(l2);
+                            _o2.add(l3);
+                            return _o2;
+                        }(new (System.Collections.Generic.List$1(System.Char)).ctor()), $t);
 
                     return c;
                 },
@@ -529,17 +529,17 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
     Bridge.ns("Newtonsoft.Json.Tests.DeserializationTests", $asm.$);
 
     Bridge.apply($asm.$.Newtonsoft.Json.Tests.DeserializationTests, {
-        f1: function (_o3) {
-            _o3.add(Newtonsoft.Json.Tests.DeserializationTests.E1.Item1);
-            _o3.add(Newtonsoft.Json.Tests.DeserializationTests.E1.Item2);
-            _o3.add(Newtonsoft.Json.Tests.DeserializationTests.E1.Item3);
-            return _o3;
+        f1: function (_o1) {
+            _o1.add(Newtonsoft.Json.Tests.DeserializationTests.E1.Item1);
+            _o1.add(Newtonsoft.Json.Tests.DeserializationTests.E1.Item2);
+            _o1.add(Newtonsoft.Json.Tests.DeserializationTests.E1.Item3);
+            return _o1;
         },
-        f2: function (_o4) {
-            _o4.set("i1", Newtonsoft.Json.Tests.DeserializationTests.E1.Item1);
-            _o4.set("i2", Newtonsoft.Json.Tests.DeserializationTests.E1.Item2);
-            _o4.set("i3", Newtonsoft.Json.Tests.DeserializationTests.E1.Item3);
-            return _o4;
+        f2: function (_o1) {
+            _o1.set("i1", Newtonsoft.Json.Tests.DeserializationTests.E1.Item1);
+            _o1.set("i2", Newtonsoft.Json.Tests.DeserializationTests.E1.Item2);
+            _o1.set("i3", Newtonsoft.Json.Tests.DeserializationTests.E1.Item3);
+            return _o1;
         }
     });
 
@@ -594,7 +594,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                 this.charField = 97;
                 this.dateField = System.DateTime.create(2010, 6, 10, 12, 0, 0, 0, System.DateTimeKind.Utc);
                 this.arrayField = System.Array.init([1, 2, 3], System.Int32);
-                this.listField = $asm.$.Newtonsoft.Json.Tests.DeserializationTests.ClassWithFields.f1(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.DeserializationTests.E1))());
+                this.listField = $asm.$.Newtonsoft.Json.Tests.DeserializationTests.ClassWithFields.f1(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.DeserializationTests.E1)).ctor());
                 this.dictField = $asm.$.Newtonsoft.Json.Tests.DeserializationTests.ClassWithFields.f2(new (System.Collections.Generic.Dictionary$2(System.String,Newtonsoft.Json.Tests.DeserializationTests.E1))());
             }
         }
@@ -802,7 +802,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
         statics: {
             methods: {
                 TestUseCase: function () {
-                    var list = $asm.$.Newtonsoft.Json.Tests.Issues.Bridge501.f1(new (System.Collections.Generic.List$1(System.Int32))());
+                    var list = $asm.$.Newtonsoft.Json.Tests.Issues.Bridge501.f1(new (System.Collections.Generic.List$1(System.Int32)).ctor());
                     var z = Newtonsoft.Json.JsonConvert.SerializeObject(list); // this is ok
                     Bridge.Test.NUnit.Assert.AreEqual("[7]", z, "List<int>");
 
@@ -825,18 +825,18 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
     Bridge.ns("Newtonsoft.Json.Tests.Issues.Bridge501", $asm.$);
 
     Bridge.apply($asm.$.Newtonsoft.Json.Tests.Issues.Bridge501, {
-        f1: function (_o7) {
-            _o7.add(7);
-            return _o7;
+        f1: function (_o1) {
+            _o1.add(7);
+            return _o1;
         },
-        f2: function (_o8) {
-            _o8.add(1);
-            _o8.add(2);
-            return _o8;
+        f2: function (_o2) {
+            _o2.add(1);
+            _o2.add(2);
+            return _o2;
         },
-        f3: function (_o9) {
-            _o9.add(7);
-            return _o9;
+        f3: function (_o3) {
+            _o3.add(7);
+            return _o3;
         }
     });
 
@@ -1524,7 +1524,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     Bridge.Test.NUnit.Assert.AreEqual("0", Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.box(Newtonsoft.Json.Tests.SerializationTests.E1.Item1, Newtonsoft.Json.Tests.SerializationTests.E1, System.Enum.toStringFn(Newtonsoft.Json.Tests.SerializationTests.E1))));
                 },
                 IListWorks: function () {
-                    var list = $asm.$.Newtonsoft.Json.Tests.SerializationTests.f1(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.SerializationTests.E1))());
+                    var list = $asm.$.Newtonsoft.Json.Tests.SerializationTests.f1(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.SerializationTests.E1)).ctor());
                     Bridge.Test.NUnit.Assert.AreEqual("[0,1,2]", Newtonsoft.Json.JsonConvert.SerializeObject(list));
                 },
                 IDictionaryWorks: function () {
@@ -1558,9 +1558,9 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     var $t;
                     var c = new Newtonsoft.Json.Tests.SerializationTests.Class1();
 
-                    c.Sub1 = ($t = new Newtonsoft.Json.Tests.SerializationTests.SubClass1(), $t.Owner = c, $t.List1 = $asm.$.Newtonsoft.Json.Tests.SerializationTests.f3(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.SerializationTests.E1))()), $t);
+                    c.Sub1 = ($t = new Newtonsoft.Json.Tests.SerializationTests.SubClass1(), $t.Owner = c, $t.List1 = $asm.$.Newtonsoft.Json.Tests.SerializationTests.f1(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.SerializationTests.E1)).ctor()), $t);
 
-                    c.Sub2 = ($t = new Newtonsoft.Json.Tests.SerializationTests.SubClass2(), $t.Owner = c, $t.List1 = $asm.$.Newtonsoft.Json.Tests.SerializationTests.f4(new (System.Collections.Generic.List$1(System.Char))()), $t);
+                    c.Sub2 = ($t = new Newtonsoft.Json.Tests.SerializationTests.SubClass2(), $t.Owner = c, $t.List1 = $asm.$.Newtonsoft.Json.Tests.SerializationTests.f3(new (System.Collections.Generic.List$1(System.Char)).ctor()), $t);
 
                     var json = Newtonsoft.Json.JsonConvert.SerializeObject(c);
                     Bridge.Test.NUnit.Assert.AreEqual("{\"Sub1\":{\"List1\":[0,1,2]},\"Sub2\":{\"List1\":[\"a\",\"b\",\"c\"]}}", json);
@@ -1610,29 +1610,23 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
     Bridge.ns("Newtonsoft.Json.Tests.SerializationTests", $asm.$);
 
     Bridge.apply($asm.$.Newtonsoft.Json.Tests.SerializationTests, {
-        f1: function (_o12) {
-            _o12.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
-            _o12.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
-            _o12.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
-            return _o12;
+        f1: function (_o1) {
+            _o1.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
+            _o1.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
+            _o1.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
+            return _o1;
         },
-        f2: function (_o13) {
-            _o13.set("i1", Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
-            _o13.set("i2", Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
-            _o13.set("i3", Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
-            return _o13;
+        f2: function (_o1) {
+            _o1.set("i1", Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
+            _o1.set("i2", Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
+            _o1.set("i3", Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
+            return _o1;
         },
-        f3: function (_o14) {
-            _o14.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
-            _o14.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
-            _o14.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
-            return _o14;
-        },
-        f4: function (_o15) {
-            _o15.add(97);
-            _o15.add(98);
-            _o15.add(99);
-            return _o15;
+        f3: function (_o2) {
+            _o2.add(97);
+            _o2.add(98);
+            _o2.add(99);
+            return _o2;
         }
     });
 
@@ -1680,7 +1674,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                 this.charField = 97;
                 this.dateField = System.DateTime.create(2010, 6, 10, 12, 0, 0, 0);
                 this.arrayField = System.Array.init([1, 2, 3], System.Int32);
-                this.listField = $asm.$.Newtonsoft.Json.Tests.SerializationTests.ClassWithFields.f1(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.SerializationTests.E1))());
+                this.listField = $asm.$.Newtonsoft.Json.Tests.SerializationTests.ClassWithFields.f1(new (System.Collections.Generic.List$1(Newtonsoft.Json.Tests.SerializationTests.E1)).ctor());
                 this.dictField = $asm.$.Newtonsoft.Json.Tests.SerializationTests.ClassWithFields.f2(new (System.Collections.Generic.Dictionary$2(System.String,Newtonsoft.Json.Tests.SerializationTests.E1))());
             }
         }
@@ -1689,17 +1683,17 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
     Bridge.ns("Newtonsoft.Json.Tests.SerializationTests.ClassWithFields", $asm.$);
 
     Bridge.apply($asm.$.Newtonsoft.Json.Tests.SerializationTests.ClassWithFields, {
-        f1: function (_o10) {
-            _o10.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
-            _o10.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
-            _o10.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
-            return _o10;
+        f1: function (_o1) {
+            _o1.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
+            _o1.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
+            _o1.add(Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
+            return _o1;
         },
-        f2: function (_o11) {
-            _o11.set("i1", Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
-            _o11.set("i2", Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
-            _o11.set("i3", Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
-            return _o11;
+        f2: function (_o2) {
+            _o2.set("i1", Newtonsoft.Json.Tests.SerializationTests.E1.Item1);
+            _o2.set("i2", Newtonsoft.Json.Tests.SerializationTests.E1.Item2);
+            _o2.set("i3", Newtonsoft.Json.Tests.SerializationTests.E1.Item3);
+            return _o2;
         }
     });
 
@@ -1849,17 +1843,17 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                 this.Id = new System.Guid();
             },
             ctor: function (id, name, city, street) {
-                this.$initialize();                var $t;
-
+                var $t;
+                this.$initialize();
                 this.Id = id;
                 this.Name = name;
                 this.Address = ($t = new Newtonsoft.Json.Tests.DeserializationTests.Address(), $t.City = city, $t.Street = street, $t);
+            }
+        },
+        methods: {
+            toString: function () {
+                return System.String.format("{0} {1} {2} {3}", this.Id, this.Name, this.Address.Street, this.Address.City);
+            }
         }
-    },
-    methods: {
-        toString: function () {
-            return System.String.format("{0} {1} {2} {3}", this.Id, this.Name, this.Address.Street, this.Address.City);
-        }
-    }
     });
 });
