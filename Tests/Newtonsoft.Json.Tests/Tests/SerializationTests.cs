@@ -121,6 +121,13 @@ namespace Newtonsoft.Json.Tests
         }
 
         [Test]
+        public static void UriWorks()
+        {
+            var uri = new Uri("http://myurl.com");
+            Assert.AreEqual("\"" + uri.AbsoluteUri + "\"", JsonConvert.SerializeObject(uri));
+        }
+
+        [Test]
         public static void TypeWorks()
         {
             Assert.AreEqual("\"" + typeof(System.Collections.Generic.List<string>).FullName + "\"", JsonConvert.SerializeObject(typeof(System.Collections.Generic.List<string>)));
