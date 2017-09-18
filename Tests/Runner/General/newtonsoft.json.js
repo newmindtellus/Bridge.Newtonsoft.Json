@@ -259,6 +259,7 @@ Bridge.assembly("Newtonsoft.Json", function ($asm, globals) {
                         }
 
                         if (type !== System.Guid &&
+                            type !== System.Uri &&
                             type !== System.Int64 &&
                             type !== System.UInt64 &&
                             type !== System.Decimal &&
@@ -278,6 +279,8 @@ Bridge.assembly("Newtonsoft.Json", function ($asm, globals) {
 
                         if (type === System.Guid) {
                             return returnRaw ? obj.toString() : this.stringify(obj.toString(), formatting);
+                        } else if (type === System.Uri) {
+                            return returnRaw ? obj.getAbsoluteUri() : this.stringify(obj.getAbsoluteUri(), formatting);
                         } else if (type === System.Int64) {
                             return obj.toJSON();
                         } else if (type === System.UInt64) {
@@ -483,7 +486,7 @@ Bridge.assembly("Newtonsoft.Json", function ($asm, globals) {
                             throw new Newtonsoft.Json.JsonException(e.message);
                         }
 
-                        if (typeof obj === "object" || Bridge.isArray(obj) || type === System.Array.type(System.Byte, 1) || type === Function || type === System.Guid || type === System.DateTime || type === System.Char || Bridge.Reflection.isEnum(type)) {
+                        if (typeof obj === "object" || Bridge.isArray(obj) || type === System.Array.type(System.Byte, 1) || type === Function || type === System.Guid || type === System.Uri || type === System.DateTime || type === System.Char || Bridge.Reflection.isEnum(type)) {
                             raw = obj;
                         }
                     }
@@ -567,6 +570,8 @@ Bridge.assembly("Newtonsoft.Json", function ($asm, globals) {
                     } else if (typeof raw === "string") {
                         if (type === Function) {
                             return Bridge.Reflection.getType(raw);
+                        } else if (type === System.Uri) {
+                            return new System.Uri(raw);
                         } else if (type === System.Guid) {
                             return System.Guid.parse(raw);
                         } else if (type === System.Boolean) {

@@ -198,6 +198,13 @@ namespace Newtonsoft.Json.Tests
         }
 
         [Test]
+        public static void UriWorks()
+        {
+            var uri = new Uri("http://myurl.com");
+            Assert.AreEqual(uri.AbsoluteUri, JsonConvert.DeserializeObject<Uri>("\"" + uri.AbsoluteUri + "\"").AbsoluteUri);
+        }
+
+        [Test]
         public static void TypeWorks()
         {
             Assert.AreEqual(typeof(System.Collections.Generic.List<string>), JsonConvert.DeserializeObject<Type>("\"" + typeof(System.Collections.Generic.List<string>).FullName + "\""));

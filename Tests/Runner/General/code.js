@@ -175,6 +175,10 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     var guid = System.Guid.newGuid();
                     Bridge.Test.NUnit.Assert.AreEqual(guid.toByteArray(), Newtonsoft.Json.JsonConvert.DeserializeObject("\"" + guid + "\"", System.Guid).toByteArray());
                 },
+                UriWorks: function () {
+                    var uri = new System.Uri("http://myurl.com");
+                    Bridge.Test.NUnit.Assert.AreEqual(uri.getAbsoluteUri(), Newtonsoft.Json.JsonConvert.DeserializeObject(System.String.concat("\"", uri.getAbsoluteUri(), "\""), System.Uri).getAbsoluteUri());
+                },
                 TypeWorks: function () {
                     Bridge.Test.NUnit.Assert.AreEqual(System.Collections.Generic.List$1(System.String), Newtonsoft.Json.JsonConvert.DeserializeObject(System.String.concat("\"", Bridge.Reflection.getTypeFullName(System.Collections.Generic.List$1(System.String)), "\""), Function));
                 },
@@ -1466,6 +1470,10 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                 GuidWorks: function () {
                     var guid = System.Guid.newGuid();
                     Bridge.Test.NUnit.Assert.AreEqual(System.String.concat("\"", guid.toString(), "\""), Newtonsoft.Json.JsonConvert.SerializeObject(guid));
+                },
+                UriWorks: function () {
+                    var uri = new System.Uri("http://myurl.com");
+                    Bridge.Test.NUnit.Assert.AreEqual(System.String.concat("\"", uri.getAbsoluteUri(), "\""), Newtonsoft.Json.JsonConvert.SerializeObject(uri));
                 },
                 TypeWorks: function () {
                     Bridge.Test.NUnit.Assert.AreEqual(System.String.concat("\"", Bridge.Reflection.getTypeFullName(System.Collections.Generic.List$1(System.String)), "\""), Newtonsoft.Json.JsonConvert.SerializeObject(System.Collections.Generic.List$1(System.String)));
