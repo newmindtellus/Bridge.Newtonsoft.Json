@@ -178,6 +178,14 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                 UriWorks: function () {
                     var uri = new System.Uri("http://myurl.com");
                     Bridge.Test.NUnit.Assert.AreEqual(uri.getAbsoluteUri(), Newtonsoft.Json.JsonConvert.DeserializeObject(System.String.concat("\"", uri.getAbsoluteUri(), "\""), System.Uri).getAbsoluteUri());
+
+                    var t1 = new Newtonsoft.Json.Tests.DeserializationTests.UriContainer(new System.Uri("http://www.mysite.com"));
+                    var json = Newtonsoft.Json.JsonConvert.SerializeObject(t1);
+                    var t2 = Newtonsoft.Json.JsonConvert.DeserializeObject(json, Newtonsoft.Json.Tests.DeserializationTests.UriContainer);
+
+                    Bridge.Test.NUnit.Assert.AreEqual("http://www.mysite.com", t2.WebsiteUrl.getAbsoluteUri());
+                    Bridge.Test.NUnit.Assert.AreEqual(t1.WebsiteUrl.getAbsoluteUri(), t2.WebsiteUrl.getAbsoluteUri());
+
                 },
                 TypeWorks: function () {
                     Bridge.Test.NUnit.Assert.AreEqual(System.Collections.Generic.List$1(System.String), Newtonsoft.Json.JsonConvert.DeserializeObject(System.String.concat("\"", Bridge.Reflection.getTypeFullName(System.Collections.Generic.List$1(System.String)), "\""), Function));
@@ -670,6 +678,18 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
         props: {
             Owner: null,
             List1: null
+        }
+    });
+
+    Bridge.define("Newtonsoft.Json.Tests.DeserializationTests.UriContainer", {
+        props: {
+            WebsiteUrl: null
+        },
+        ctors: {
+            ctor: function (websiteUrl) {
+                this.$initialize();
+                this.WebsiteUrl = websiteUrl;
+            }
         }
     });
 

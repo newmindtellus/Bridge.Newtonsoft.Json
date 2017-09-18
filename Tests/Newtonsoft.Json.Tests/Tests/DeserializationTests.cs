@@ -181,6 +181,19 @@ namespace Newtonsoft.Json.Tests
             }
         }
 
+        class UriContainer
+        {
+            public UriContainer(Uri websiteUrl)
+            {
+                WebsiteUrl = websiteUrl;
+            }
+
+            public Uri WebsiteUrl
+            {
+                get; private set;
+            }
+        }
+
         #endregion Test data
 
         [Test]
@@ -202,6 +215,14 @@ namespace Newtonsoft.Json.Tests
         {
             var uri = new Uri("http://myurl.com");
             Assert.AreEqual(uri.AbsoluteUri, JsonConvert.DeserializeObject<Uri>("\"" + uri.AbsoluteUri + "\"").AbsoluteUri);
+
+            var t1 = new UriContainer(new Uri("http://www.mysite.com"));
+            var json = JsonConvert.SerializeObject(t1);
+            var t2 = JsonConvert.DeserializeObject<UriContainer>(json);
+
+            Assert.AreEqual("http://www.mysite.com", t2.WebsiteUrl.AbsoluteUri);
+            Assert.AreEqual(t1.WebsiteUrl.AbsoluteUri, t2.WebsiteUrl.AbsoluteUri);
+
         }
 
         [Test]
