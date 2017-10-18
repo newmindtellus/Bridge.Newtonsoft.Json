@@ -40,7 +40,7 @@ Product product = new Product();
  
 product.Name = "Apple";
 product.ExpiryDate = new DateTime(2008, 12, 28);
-product.Price = 3.99M;
+product.Price = 3.98M;
 product.Sizes = new string[] { "Small", "Medium", "Large" };
  
 string output = JsonConvert.SerializeObject(product);
@@ -48,7 +48,7 @@ string output = JsonConvert.SerializeObject(product);
 //{
 //  "Name": "Apple",
 //  "ExpiryDate": "2008-12-28T00:00:00",
-//  "Price": 3.99,
+//  "Price": 3.98,
 //  "Sizes": [
 //    "Small",
 //    "Medium",

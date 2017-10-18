@@ -1,5 +1,5 @@
 /*
- * @version   : 1.2.1 - A Bridge.NET implementation of Newtonsoft.Json
+ * @version   : 1.2.2 - A Bridge.NET implementation of Newtonsoft.Json
  * @author    : Object.NET, Inc. http://www.bridge.net/
  * @copyright : Copyright (c) 2008-2017, Object.NET, Inc. (http://www.object.net/). All rights reserved.
  * @license   : See license.txt and https://github.com/bridgedotnet/Bridge.NET/blob/master/LICENSE.
@@ -118,8 +118,8 @@ Bridge.assembly("Newtonsoft.Json", function ($asm, globals) {
             },
             ctors: {
                 init: function () {
-                    this.version = "1.2.1";
-                    this.compiler = "16.3.1";
+                    this.version = "1.2.2";
+                    this.compiler = "16.4.0";
                 }
             }
         }
@@ -258,7 +258,8 @@ Bridge.assembly("Newtonsoft.Json", function ($asm, globals) {
                             return;
                         }
 
-                        if (type !== System.Guid &&
+                        if (type !== System.Globalization.CultureInfo &&
+                            type !== System.Guid &&
                             type !== System.Uri &&
                             type !== System.Int64 &&
                             type !== System.UInt64 &&
@@ -277,7 +278,9 @@ Bridge.assembly("Newtonsoft.Json", function ($asm, globals) {
                             wasBoxed = true;
                         }
 
-                        if (type === System.Guid) {
+                        if (type === System.Globalization.CultureInfo) {
+                            return returnRaw ? obj.name : this.stringify(obj.name, formatting);
+                        } else if (type === System.Guid) {
                             return returnRaw ? obj.toString() : this.stringify(obj.toString(), formatting);
                         } else if (type === System.Uri) {
                             return returnRaw ? obj.getAbsoluteUri() : this.stringify(obj.getAbsoluteUri(), formatting);
@@ -488,7 +491,7 @@ Bridge.assembly("Newtonsoft.Json", function ($asm, globals) {
                             throw new Newtonsoft.Json.JsonException(e.message);
                         }
 
-                        if (typeof obj === "object" || Bridge.isArray(obj) || type === System.Array.type(System.Byte, 1) || type === Function || type === System.Guid || type === System.Uri || type === System.DateTime || type === System.Char || Bridge.Reflection.isEnum(type)) {
+                        if (typeof obj === "object" || Bridge.isArray(obj) || type === System.Array.type(System.Byte, 1) || type === Function || type === System.Guid || type === System.Globalization.CultureInfo || type === System.Uri || type === System.DateTime || type === System.Char || Bridge.Reflection.isEnum(type)) {
                             raw = obj;
                         }
                     }
@@ -572,6 +575,8 @@ Bridge.assembly("Newtonsoft.Json", function ($asm, globals) {
                     } else if (typeof raw === "string") {
                         if (type === Function) {
                             return Bridge.Reflection.getType(raw);
+                        } else if (type === System.Globalization.CultureInfo) {
+                            return new System.Globalization.CultureInfo(raw);
                         } else if (type === System.Uri) {
                             return new System.Uri(raw);
                         } else if (type === System.Guid) {

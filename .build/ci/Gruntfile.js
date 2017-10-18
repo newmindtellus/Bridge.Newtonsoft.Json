@@ -2,12 +2,20 @@ module.exports = function(grunt) {
     var browsers = [
     {
         browserName: "firefox",
-        version: "52",
+        version: "55",
+        platform: "Windows 10"
+    }
+    , {
+        browserName: "googlechrome",
+        platform: "WIN7"
+    }
+    , {
+        browserName: "googlechrome",
         platform: "WIN8"
     }
     , {
         browserName: "googlechrome",
-        platform: "XP"
+        platform: "Windows 8.1"
     }
     , {
         browserName: "googlechrome",
@@ -76,6 +84,6 @@ module.exports = function(grunt) {
     }
 
     // https://gruntjs.com/api/grunt.task
-    // grunt.registerTask("dev", ["connect", "watch"]);
+    grunt.registerTask("dev", ["connect", "watch"]);
     grunt.registerTask("test", ["connect", "saucelabs-qunit"]);
 };
