@@ -104,7 +104,7 @@
             ctors: {
                 init: function () {
                     this.version = "1.2.2";
-                    this.compiler = "16.3.1";
+                    this.compiler = "16.4.0";
                 }
             }
         }

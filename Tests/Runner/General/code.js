@@ -3,7 +3,7 @@
  * @version 1.2.2
  * @author Object.NET, Inc.
  * @copyright Copyright 2008-2017 Object.NET, Inc.
- * @compiler Bridge.NET 16.3.1
+ * @compiler Bridge.NET 16.4.0
  */
 Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
     "use strict";
@@ -169,7 +169,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
             methods: {
                 ByteArrayWorks: function () {
                     var arr = System.Array.init([1, 2, 3], System.Byte);
-                    Bridge.Test.NUnit.Assert.AreEqual(arr, Newtonsoft.Json.JsonConvert.DeserializeObject(System.String.concat("\"", System.Convert.toBase64String(arr, null, null, null), "\""), System.Array.type(System.Byte)));
+                    Bridge.Test.NUnit.Assert.AreEqual(arr, Newtonsoft.Json.JsonConvert.DeserializeObject("\"" + (System.Convert.toBase64String(arr, null, null, null) || "") + "\"", System.Array.type(System.Byte)));
                 },
                 GuidWorks: function () {
                     var guid = System.Guid.newGuid();
@@ -177,7 +177,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                 },
                 UriWorks: function () {
                     var uri = new System.Uri("http://myurl.com");
-                    Bridge.Test.NUnit.Assert.AreEqual(uri.getAbsoluteUri(), Newtonsoft.Json.JsonConvert.DeserializeObject(System.String.concat("\"", uri.getAbsoluteUri(), "\""), System.Uri).getAbsoluteUri());
+                    Bridge.Test.NUnit.Assert.AreEqual(uri.getAbsoluteUri(), Newtonsoft.Json.JsonConvert.DeserializeObject("\"" + (uri.getAbsoluteUri() || "") + "\"", System.Uri).getAbsoluteUri());
 
                     var t1 = new Newtonsoft.Json.Tests.DeserializationTests.UriContainer(new System.Uri("http://www.mysite.com"));
                     var json = Newtonsoft.Json.JsonConvert.SerializeObject(t1);
@@ -188,7 +188,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
 
                 },
                 TypeWorks: function () {
-                    Bridge.Test.NUnit.Assert.AreEqual(System.Collections.Generic.List$1(System.String), Newtonsoft.Json.JsonConvert.DeserializeObject(System.String.concat("\"", Bridge.Reflection.getTypeFullName(System.Collections.Generic.List$1(System.String)), "\""), Function));
+                    Bridge.Test.NUnit.Assert.AreEqual(System.Collections.Generic.List$1(System.String), Newtonsoft.Json.JsonConvert.DeserializeObject("\"" + (Bridge.Reflection.getTypeFullName(System.Collections.Generic.List$1(System.String)) || "") + "\"", Function));
                 },
                 CharWorks: function () {
                     Bridge.Test.NUnit.Assert.AreEqual(97, Newtonsoft.Json.JsonConvert.DeserializeObject("\"a\"", System.Char));
@@ -244,7 +244,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                 DateTimeSerializationDeserializationTurnaroundWorks: function () {
                     var d2 = System.DateTime.create(1700, 2, 28, 12, 3, 4, 5, System.DateTimeKind.Local);
                     var s2 = System.DateTime.format(d2);
-                    var s2Utc = System.String.concat("\"", System.DateTime.format(d2, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'FFFFFFFK"), "\"");
+                    var s2Utc = "\"" + (System.DateTime.format(d2, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'FFFFFFFK") || "") + "\"";
 
                     var serialized2 = Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.box(d2, System.DateTime, System.DateTime.format));
                     Bridge.Test.NUnit.Assert.AreEqual(s2Utc, serialized2, "d2 serialized string");
@@ -256,7 +256,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
 
                     var d3 = System.DateTime.create(2017, 1, 8, 13, 3, 4, 5, System.DateTimeKind.Unspecified);
                     var s3 = System.DateTime.format(d3);
-                    var s3Utc = System.String.concat("\"", System.DateTime.format(d3, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'FFFFFFFK"), "\"");
+                    var s3Utc = "\"" + (System.DateTime.format(d3, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'FFFFFFFK") || "") + "\"";
 
                     var serialized3 = Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.box(d3, System.DateTime, System.DateTime.format));
                     Bridge.Test.NUnit.Assert.AreEqual(s3Utc, serialized3, "d3 serialized string");
@@ -746,7 +746,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
         },
         methods: {
             SomeMethod: function () {
-                return System.String.concat("I'm ", Bridge.Reflection.getTypeFullName(Bridge.getType(this)), " and my value is ", this.Value);
+                return "I'm " + (Bridge.Reflection.getTypeFullName(Bridge.getType(this)) || "") + " and my value is " + this.Value;
             }
         }
     });
@@ -789,10 +789,10 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     var obj2 = new (Newtonsoft.Json.Tests.Issues.Bridge2679.Test2$1(System.Int32))(2);
 
                     var json1 = Newtonsoft.Json.JsonConvert.SerializeObject(obj1, ($t = new Newtonsoft.Json.JsonSerializerSettings(), $t.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Objects, $t));
-                    Bridge.Test.NUnit.Assert.AreEqual(System.String.concat("{\"$type\":\"", Bridge.Reflection.getTypeQName(Newtonsoft.Json.Tests.Issues.Bridge2679.Test1), "\",\"Value\":1}"), json1);
+                    Bridge.Test.NUnit.Assert.AreEqual("{\"$type\":\"" + (Bridge.Reflection.getTypeQName(Newtonsoft.Json.Tests.Issues.Bridge2679.Test1) || "") + "\",\"Value\":1}", json1);
 
                     var json2 = Newtonsoft.Json.JsonConvert.SerializeObject(obj2, ($t = new Newtonsoft.Json.JsonSerializerSettings(), $t.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Objects, $t));
-                    Bridge.Test.NUnit.Assert.AreEqual(System.String.concat("{\"$type\":\"", Bridge.Reflection.getTypeQName(Newtonsoft.Json.Tests.Issues.Bridge2679.Test2$1(System.Int32)), "\",\"Value\":2}"), json2);
+                    Bridge.Test.NUnit.Assert.AreEqual("{\"$type\":\"" + (Bridge.Reflection.getTypeQName(Newtonsoft.Json.Tests.Issues.Bridge2679.Test2$1(System.Int32)) || "") + "\",\"Value\":2}", json2);
                 }
             }
         }
@@ -1147,7 +1147,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     var obj = ($t = new Newtonsoft.Json.Tests.Issues.Case34.Test1(), $t.GUID = guid, $t.IntProp = 1, $t);
 
                     var json = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
-                    Bridge.Test.NUnit.Assert.AreEqual(System.String.format("{{\"GUID\":\"{0}\",\"IntProp\":1}}", guid.toString()), json);
+                    Bridge.Test.NUnit.Assert.AreEqual(System.String.format("{{\"GUID\":\"{0}\",\"IntProp\":1}}", [guid.toString()]), json);
                     obj = Newtonsoft.Json.JsonConvert.DeserializeObject(json, Newtonsoft.Json.Tests.Issues.Case34.Test1);
                     Bridge.Test.NUnit.Assert.AreEqual(guid.toString(), obj.GUID.toString());
                     Bridge.Test.NUnit.Assert.AreEqual(1, System.Nullable.getValue(obj.IntProp));
@@ -1243,7 +1243,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
             ctor: function (value) {
                 this.$initialize();
                 if (System.String.isNullOrWhiteSpace(value)) {
-                    throw new System.ArgumentException(System.String.format("Null/blank {0} specified", "value"));
+                    throw new System.ArgumentException(System.String.format("Null/blank {0} specified", ["value"]));
                 }
 
                 this.Value = value;
@@ -1496,7 +1496,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
         },
         methods: {
             Add: function (value) {
-                return new Newtonsoft.Json.Tests.JsonConstructorTests.MyOtherString(System.String.concat(this.Value, value));
+                return new Newtonsoft.Json.Tests.JsonConstructorTests.MyOtherString((this.Value || "") + (value || ""));
             }
         }
     });
@@ -1523,18 +1523,18 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
             methods: {
                 ByteArrayWorks: function () {
                     var arr = System.Array.init([1, 2, 3], System.Byte);
-                    Bridge.Test.NUnit.Assert.AreEqual(System.String.concat("\"", System.Convert.toBase64String(arr, null, null, null), "\""), Newtonsoft.Json.JsonConvert.SerializeObject(arr));
+                    Bridge.Test.NUnit.Assert.AreEqual("\"" + (System.Convert.toBase64String(arr, null, null, null) || "") + "\"", Newtonsoft.Json.JsonConvert.SerializeObject(arr));
                 },
                 GuidWorks: function () {
                     var guid = System.Guid.newGuid();
-                    Bridge.Test.NUnit.Assert.AreEqual(System.String.concat("\"", guid.toString(), "\""), Newtonsoft.Json.JsonConvert.SerializeObject(guid));
+                    Bridge.Test.NUnit.Assert.AreEqual("\"" + (guid.toString() || "") + "\"", Newtonsoft.Json.JsonConvert.SerializeObject(guid));
                 },
                 UriWorks: function () {
                     var uri = new System.Uri("http://myurl.com");
-                    Bridge.Test.NUnit.Assert.AreEqual(System.String.concat("\"", uri.getAbsoluteUri(), "\""), Newtonsoft.Json.JsonConvert.SerializeObject(uri));
+                    Bridge.Test.NUnit.Assert.AreEqual("\"" + (uri.getAbsoluteUri() || "") + "\"", Newtonsoft.Json.JsonConvert.SerializeObject(uri));
                 },
                 TypeWorks: function () {
-                    Bridge.Test.NUnit.Assert.AreEqual(System.String.concat("\"", Bridge.Reflection.getTypeFullName(System.Collections.Generic.List$1(System.String)), "\""), Newtonsoft.Json.JsonConvert.SerializeObject(System.Collections.Generic.List$1(System.String)));
+                    Bridge.Test.NUnit.Assert.AreEqual("\"" + (Bridge.Reflection.getTypeFullName(System.Collections.Generic.List$1(System.String)) || "") + "\"", Newtonsoft.Json.JsonConvert.SerializeObject(System.Collections.Generic.List$1(System.String)));
                 },
                 CharWorks: function () {
                     var c = 97;
@@ -1574,7 +1574,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     var dt = System.DateTime.create(2010, 6, 10, 12, 0, 0, 0);
                     var s = Newtonsoft.Json.JsonConvert.SerializeObject(Bridge.box(dt, System.DateTime, System.DateTime.format));
 
-                    Bridge.Test.NUnit.Assert.AreEqual(System.String.concat("\"", System.DateTime.format(dt, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'FFFFFFFK"), "\""), s, System.String.concat("Result: ", s));
+                    Bridge.Test.NUnit.Assert.AreEqual("\"" + (System.DateTime.format(dt, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'FFFFFFFK") || "") + "\"", s, "Result: " + (s || ""));
                 },
                 ArrayWorks: function () {
                     var intArr = System.Array.init([1, 2, 3], System.Int32);
@@ -1800,49 +1800,49 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     if (second === void 0) { second = null; }
                     if (ms === void 0) { ms = null; }
                     if (message === void 0) { message = null; }
-                    Bridge.Test.NUnit.Assert.AreEqual(kind, System.DateTime.getKind(dt), System.String.concat(message, "Kind"));
-                    Bridge.Test.NUnit.Assert.AreEqual(ticks.toString(), System.DateTime.getTicks(dt).toString(), System.String.concat(message, "Ticks"));
+                    Bridge.Test.NUnit.Assert.AreEqual(kind, System.DateTime.getKind(dt), (message || "") + "Kind");
+                    Bridge.Test.NUnit.Assert.AreEqual(ticks.toString(), System.DateTime.getTicks(dt).toString(), (message || "") + "Ticks");
 
                     if (System.Nullable.hasValue(year)) {
-                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(year), System.DateTime.getYear(dt), System.String.concat(message, "Year"));
+                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(year), System.DateTime.getYear(dt), (message || "") + "Year");
                     }
 
                     if (System.Nullable.hasValue(month)) {
-                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(month), System.DateTime.getMonth(dt), System.String.concat(message, "Month"));
+                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(month), System.DateTime.getMonth(dt), (message || "") + "Month");
                     }
 
                     if (System.Nullable.hasValue(day)) {
-                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(day), System.DateTime.getDay(dt), System.String.concat(message, "Day"));
+                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(day), System.DateTime.getDay(dt), (message || "") + "Day");
                     }
 
                     if (System.Nullable.hasValue(hour)) {
-                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(hour), System.DateTime.getHour(dt), System.String.concat(message, "Hour"));
+                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(hour), System.DateTime.getHour(dt), (message || "") + "Hour");
                     }
 
                     if (System.Nullable.hasValue(minute)) {
-                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(minute), System.DateTime.getMinute(dt), System.String.concat(message, "Minute"));
+                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(minute), System.DateTime.getMinute(dt), (message || "") + "Minute");
                     }
 
                     if (System.Nullable.hasValue(second)) {
-                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(second), System.DateTime.getSecond(dt), System.String.concat(message, "Second"));
+                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(second), System.DateTime.getSecond(dt), (message || "") + "Second");
                     }
 
                     if (System.Nullable.hasValue(ms)) {
-                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(ms), System.DateTime.getMillisecond(dt), System.String.concat(message, "Millisecond"));
+                        Bridge.Test.NUnit.Assert.AreEqual(System.Nullable.getValue(ms), System.DateTime.getMillisecond(dt), (message || "") + "Millisecond");
                     }
                 },
                 AssertDate: function (expected, actual, message) {
                     if (message === void 0) { message = null; }
-                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getKind(expected), System.DateTime.getKind(actual), System.String.concat(message, "Kind"));
-                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getTicks(expected).toString(), System.DateTime.getTicks(actual).toString(), System.String.concat(message, "Ticks"));
+                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getKind(expected), System.DateTime.getKind(actual), (message || "") + "Kind");
+                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getTicks(expected).toString(), System.DateTime.getTicks(actual).toString(), (message || "") + "Ticks");
 
-                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getYear(expected), System.DateTime.getYear(actual), System.String.concat(message, "Year"));
-                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getMonth(expected), System.DateTime.getMonth(actual), System.String.concat(message, "Month"));
-                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getDay(expected), System.DateTime.getDay(actual), System.String.concat(message, "Day"));
-                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getHour(expected), System.DateTime.getHour(actual), System.String.concat(message, "Hour"));
-                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getMinute(expected), System.DateTime.getMinute(actual), System.String.concat(message, "Minute"));
-                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getSecond(expected), System.DateTime.getSecond(actual), System.String.concat(message, "Second"));
-                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getMillisecond(expected), System.DateTime.getMillisecond(actual), System.String.concat(message, "Millisecond"));
+                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getYear(expected), System.DateTime.getYear(actual), (message || "") + "Year");
+                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getMonth(expected), System.DateTime.getMonth(actual), (message || "") + "Month");
+                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getDay(expected), System.DateTime.getDay(actual), (message || "") + "Day");
+                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getHour(expected), System.DateTime.getHour(actual), (message || "") + "Hour");
+                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getMinute(expected), System.DateTime.getMinute(actual), (message || "") + "Minute");
+                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getSecond(expected), System.DateTime.getSecond(actual), (message || "") + "Second");
+                    Bridge.Test.NUnit.Assert.AreEqual(System.DateTime.getMillisecond(expected), System.DateTime.getMillisecond(actual), (message || "") + "Millisecond");
                 },
                 GetOffsetString: function (adjustment) {
                     if (adjustment === void 0) { adjustment = 0; }
@@ -1851,7 +1851,7 @@ Bridge.assembly("Newtonsoft.Json.Tests", function ($asm, globals) {
                     var b = minutes < 0 ? "+" : "-";
                     minutes = Math.abs(minutes);
 
-                    var offset = minutes !== 0 ? (System.String.concat(b, System.Int32.format((((Bridge.Int.div(minutes, 60)) | 0)), "00"), ":", System.Int32.format((minutes % 60), "00"))) : "Z";
+                    var offset = minutes !== 0 ? ((b || "") + (System.Int32.format((((Bridge.Int.div(minutes, 60)) | 0)), "00") || "") + ":" + (System.Int32.format((minutes % 60), "00") || "")) : "Z";
 
                     return offset;
                 },
