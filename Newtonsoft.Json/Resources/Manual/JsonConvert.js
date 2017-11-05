@@ -278,7 +278,8 @@
                             }
 
                             var params = jsonCtor.pi || [],
-                                args = [];
+                                args = [],
+                                names = [];
 
                             if (isEnumerable) {
                                 if (Bridge.Reflection.isAssignableFrom(System.Collections.IEnumerable, params[0].pt)) {
@@ -302,6 +303,7 @@
 
                                     if (name) {
                                         args[i] = Newtonsoft.Json.JsonConvert.DeserializeObject(raw[name], params[i].pt, settings, true);
+                                        names.push(name);
                                     } else {
                                         args[i] = Bridge.getDefaultValue(params[i].pt);
                                     }
@@ -309,11 +311,11 @@
                             }
 
                             var v = Bridge.Reflection.invokeCI(jsonCtor, args);
-                            return isList ? {$list: true, value: v} : v;
+                            return isList ? { $list: true, value: v, names: names } : {names: names, value: v};
                         }
                     }
 
-                    return Bridge.createInstance(type);
+                    return { names: [], value: Bridge.createInstance(type) };
                 },
 
                 DeserializeObject: function (raw, type, settings, field) {
@@ -527,6 +529,8 @@
                                 return list.value;
                             }
 
+                            list = list.value;
+
                             if (raw.length === undefined) {
                                 return list;
                             }
@@ -539,7 +543,8 @@
                         } else if (Bridge.Reflection.isAssignableFrom(System.Collections.IDictionary, type)) {
                             var typesGeneric = System.Collections.Generic.Dictionary$2.getTypeParameters(type),
                                 typeKey = typesGeneric[0] || System.Object,
-                                typeValue = typesGeneric[1] || System.Object;
+                                typeValue = typesGeneric[1] || System.Object,
+                                names;
 
                             var dictionary = Newtonsoft.Json.JsonConvert.createInstance(type, raw, settings);
 
@@ -547,9 +552,14 @@
                                 return dictionary.value;
                             }
 
+                            names = dictionary.names || [];
+                            dictionary = dictionary.value;
+
                             for (var each in raw) {
                                 if (raw.hasOwnProperty(each)) {
-                                    dictionary.add(Newtonsoft.Json.JsonConvert.DeserializeObject(each, typeKey, settings, true), Newtonsoft.Json.JsonConvert.DeserializeObject(raw[each], typeValue, settings, true));
+                                    if (names.indexOf(each) < 0) {
+                                        dictionary.add(Newtonsoft.Json.JsonConvert.DeserializeObject(each, typeKey, settings, true), Newtonsoft.Json.JsonConvert.DeserializeObject(raw[each], typeValue, settings, true));
+                                    }                                    
                                 }
                             }
 
@@ -565,11 +575,11 @@
                                 throw TypeError(System.String.concat("Cannot find type: ", raw["$type"]));
                             }
 
-                            var o = Newtonsoft.Json.JsonConvert.createInstance(type, raw, settings);
+                            var o = Newtonsoft.Json.JsonConvert.createInstance(type, raw, settings),
+                                names;
 
-                            if (o && o.$list) {
-                                o = o.value;
-                            }
+                            names = o.names || [];
+                            o = o.value;
 
                             var camelCase = settings && Bridge.is(settings.ContractResolver, Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver),
                                 fields = Bridge.Reflection.getMembers(type, 4, 20),
@@ -580,8 +590,14 @@
                                 i;
 
                             for (i = 0; i < fields.length; i++) {
-                                f = fields[i];
+                                f = fields[i];                                
+
                                 mname = camelCase ? (f.n.charAt(0).toLowerCase() + f.n.substr(1)) : f.n;
+
+                                if (names.indexOf(mname) > -1) {
+                                    continue;
+                                }
+
                                 value = raw[mname];
 
                                 if (value === undefined) {
@@ -597,7 +613,13 @@
 
                             for (i = 0; i < properties.length; i++) {
                                 p = properties[i];
+
                                 mname = camelCase ? (p.n.charAt(0).toLowerCase() + p.n.substr(1)) : p.n;
+
+                                if (names.indexOf(mname) > -1) {
+                                    continue;
+                                }
+
                                 value = raw[mname];
 
                                 if (value === undefined) {
