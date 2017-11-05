@@ -25,10 +25,11 @@ module.exports = function(grunt) {
         browserName: "googlechrome",
         platform: "linux"
     } 
-    ,{
+    /* MS-Edge never returns from a submitted test run.
+     * ,{
         browserName: "microsoftedge",
         platform: "Windows 10"
-    }
+    }*/
     //, {
         // browserName: "iphone",
         // platform: 'Mac 10.10',
